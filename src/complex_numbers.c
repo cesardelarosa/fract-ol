@@ -6,7 +6,7 @@
 /*   By: cde-la-r <cde-la-r@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:36:08 by cde-la-r          #+#    #+#             */
-/*   Updated: 2023/11/17 20:43:47 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2023/11/18 10:49:17 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,13 @@ t_complex	complex_sum(t_complex z1, t_complex z2)
 	return (sum);
 }
 
-t_complex	complex_pow(t_complex z, unsigned int n)
+t_complex	complex_product(t_complex z1, t_complex z2)
 {
-	t_complex	squared;
+	t_complex	product;
 
-	if (n == 0)
-		return ((t_complex){1, 0});
-	if (n == 1)
-		return (z);
-	squared.x = z.x * z.x - z.y * z.y;
-	squared.y = 2 * z.x * z.y;
-	return (complex_pow(squared, n - 1));
+	product.x = z1.x * z2.x - z1.y * z2.y;
+	product.y = z1.x * z2.y + z1.y * z2.x;
+	return (product);
 }
 
 double	complex_norme(t_complex z)
@@ -45,5 +41,5 @@ double	complex_norme(t_complex z)
 
 t_complex	ft_julia(t_complex z, t_complex c)
 {
-	return (complex_sum(complex_pow(z, 2), c));
+	return (complex_sum(complex_product(z, z), c));
 }

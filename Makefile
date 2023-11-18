@@ -6,7 +6,10 @@ INCLUDE = -I./include -I./minilibx
 OBJ = $(SRC:.c=.o)
 NAME = fractol
 
-all: $(NAME)
+all: $(NAME) minilibx
+
+minilibx:
+	make -C minilibx
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
@@ -21,5 +24,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+	rm -f -C minilibx
 
 .PHONY: all clean fclean re
