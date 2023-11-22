@@ -6,7 +6,7 @@
 /*   By: cde-la-r <cde-la-r@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:01:12 by cde-la-r          #+#    #+#             */
-/*   Updated: 2023/11/18 11:29:11 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2023/11/22 06:41:17 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #include "params.h"
 #include "complex_numbers.h"
 #include "colors.h"
-#include "consts.h"
+
+#define MAX_ITER 50
+#define THRESHOLD 4.0
 
 double	norm_dim(double dim, double move, double zoom, int max)
 {
@@ -56,3 +58,68 @@ void	draw_julia_set(t_params *params)
 		pixel.x++;
 	}
 }
+
+void	draw_mandelbrot_set(t_params *params)
+{
+	t_complex	pixel;
+	t_complex	z;
+	t_complex	c;
+	int			i;
+
+	pixel.x = 0;
+	while (pixel.x < WIDTH)
+	{
+		pixel.y = 0;
+		while (pixel.y < HEIGHT)
+		{
+			c = norm_graph(pixel, params);
+			z.x = 0;
+			z.y = 0;
+			i = 0;
+			while (i++ <= MAX_ITER && complex_norme(z) < THRESHOLD)
+				z = ft_julia(z, c);
+			mlx_pixel_put(params->mlx, params->win, pixel.x, pixel.y, color(i));
+			pixel.y++;
+		}
+		pixel.x++;
+	}
+}
+
+void	draw_ship_set(t_params *params)
+{
+	t_complex	pixel;
+	t_complex	z;
+	t_complex	c;
+	int			i;
+
+	pixel.x = 0;
+	while (pixel.x < WIDTH)
+	{
+		pixel.y = 0;
+		while (pixel.y < HEIGHT)
+		{
+			c = norm_graph(pixel, params);
+			z.x = 0;
+			z.y = 0;
+			i = 0;
+			while (i++ <= MAX_ITER && complex_norme(z) < THRESHOLD)
+				z = ft_ship(z, c);
+			mlx_pixel_put(params->mlx, params->win, pixel.x, pixel.y, color(i));
+			pixel.y++;
+		}
+		pixel.x++;
+	}
+}
+
+/*
+void	draw(t_params *params, void (*fractal) (), void (*color) ())
+{
+	fractal(params, color);
+}
+
+
+void	julia(t_params *params, void (*color) ())
+{
+
+}
+*/

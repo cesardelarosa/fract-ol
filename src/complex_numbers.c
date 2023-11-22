@@ -6,7 +6,7 @@
 /*   By: cde-la-r <cde-la-r@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:36:08 by cde-la-r          #+#    #+#             */
-/*   Updated: 2023/11/18 10:49:17 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2023/11/22 03:43:28 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,15 @@ double	complex_norme(t_complex z)
 t_complex	ft_julia(t_complex z, t_complex c)
 {
 	return (complex_sum(complex_product(z, z), c));
+}
+
+t_complex	ft_ship(t_complex z, t_complex c)
+{
+	t_complex	r;
+
+	r.x = z.x * z.x - z.y * z.y;
+	r.x = r.x * ((r.x > 0) - (r.x < 0)) + c.x;
+	r.y = 2 * z.x * z.y;
+	r.y = r.y * ((r.y > 0) - (r.y < 0)) + c.y;
+	return (r);
 }
