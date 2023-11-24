@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -L./minilibx -lmlx -framework OpenGL -framework AppKit
+LDFLAGS = -L./minilibx -lmlx -lXext -lX11 -lm
 SRC = $(wildcard src/*.c)
 INCLUDE = -I./include -I./minilibx
 OBJ = $(SRC:.c=.o)
