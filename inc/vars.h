@@ -16,7 +16,7 @@
 # define WIDTH 600
 # define HEIGHT 600
 
-typedef struc s_vars
+typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;

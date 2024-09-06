@@ -16,6 +16,8 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include "utils.h"
+#include "vars.h"
+#include "utils.h"
 
 #define MOUSE_UP 4
 #define MOUSE_DOWN 5
