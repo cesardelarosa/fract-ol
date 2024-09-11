@@ -54,8 +54,8 @@ t_vars	read_args(int argc, char **argv)
 	vars.julia_cy = 0.27015;
 	if (argc == 4)
 	{
-		vars.julia_cx = ft_atoi(argv[2]);
-		vars.julia_cy = ft_atoi(argv[3]);
+		vars.julia_cx = ft_atof(argv[1]);
+		vars.julia_cy = ft_atof(argv[2]);
 	}
 	return (vars);
 }

@@ -16,8 +16,8 @@
 #include "complex.h"
 #include "vars.h"
 
-#define MAX_ITER 70
-#define THRESHOLD 4.0
+#define MAX_ITER 50
+#define THRESHOLD 4
 
 int	julia(int x, int y, t_vars *vars)
 {

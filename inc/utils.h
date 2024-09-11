@@ -17,5 +17,6 @@
 
 void	draw(t_vars *vars);
 int	(*select_fractal(char *str))(int x, int y, t_vars *vars);
+double	ft_atof(const char *str);
 
 #endif

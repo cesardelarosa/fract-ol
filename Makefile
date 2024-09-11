@@ -10,7 +10,7 @@ OBJ_DIR = obj
 LIB_DIR = lib
 
 # Archivos fuente y objeto
-SRC_FILES = main.c draw.c
+SRC_FILES = main.c draw.c utils.c
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
 # Nombre del ejecutable
