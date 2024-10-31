@@ -1,50 +1,63 @@
-# Compilador y flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -L./minilibx -L./libft -L./ft_printf -lmlx -lXext -lX11 -lm
-INCLUDE = -I./inc -I./minilibx -I./ft_printf -I./libft
+INCLUDES = -I./inc -I./minilibx -I./libft -I./ft_printf
 
-# Directorios
+LIB_DIRS = libft ft_printf minilibx
+LIBS = -L./minilibx -L./libft -L./ft_printf -lmlx -lft -lftprintf -lXext -lX11 -lm
+
 SRC_DIR = src
+BONUS_DIR = bonus
 OBJ_DIR = obj
-LIB_DIR = lib
+OBJ_SRC_DIR = $(OBJ_DIR)/src
+OBJ_BONUS_DIR = $(OBJ_DIR)/bonus
 
-# Archivos fuente y objeto
-SRC_FILES = main.c draw.c
-OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
+SRCS = main.c draw.c utils.c
+OBJS = $(SRCS:%.c=$(OBJ_SRC_DIR)/%.o)
 
-# Nombre del ejecutable
+BONUS_SRCS = main_bonus.c draw_bonus.c
+BONUS_OBJS = $(BONUS_SRCS:%.c=$(OBJ_BONUS_DIR)/%.o)
+
 NAME = fractol
+BONUS_NAME = fractol_bonus
 
-.PHONY: all clean fclean re
+all: $(LIBS) $(NAME)
 
-# Regla principal
-all: $(OBJ_DIR) $(NAME)
+$(LIBS): $(LIB_DIRS)
+	@for dir in $(LIB_DIRS); do \
+		$(MAKE) -C $$dir || exit 1; \
+	done
 
-# Crear directorio de objetos
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+$(NAME): $(OBJS) $(LIB_DIRS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 
-# Regla para compilar el ejecutable
-$(NAME): $(OBJ_FILES)
-	@make -C minilibx
-	@make -C ft_printf
-	@make -C libft
-	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS) -lft -lftprintf
+bonus: $(BONUS_NAME)
 
-# Regla para compilar archivos .c a .o
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+$(BONUS_NAME): $(BONUS_OBJS) $(LIB_DIRS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) $(LIBS)
 
-# Limpiar archivos compilados
+$(OBJ_SRC_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SRC_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_BONUS_DIR)/%.o: $(BONUS_DIR)/%.c | $(OBJ_BONUS_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_SRC_DIR) $(OBJ_BONUS_DIR):
+	mkdir -p $@
+
+$(LIB_DIRS):
+	make -C $@
+
 clean:
 	rm -rf $(OBJ_DIR)
-	@make -C minilibx clean
-	@make -C ft_printf clean
 	@make -C libft clean
+	@make -C ft_printf clean
+	@make -C minilibx clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
+	@make -C libft fclean
+	@make -C ft_printf fclean
 
 re: fclean all
 
+.PHONY: all clean fclean re bonus

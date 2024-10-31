@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <cde-la-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 17:50:03 by cde-la-r          #+#    #+#             */
-/*   Updated: 2024/07/13 17:37:23 by cde-la-r         ###   ########.fr       */
+/*   Created: 2024/10/31 02:38:04 by cde-la-r          #+#    #+#             */
+/*   Updated: 2024/10/31 02:58:06 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h> 
+#include <stdio.h>
 #include "mlx.h"
 #include "libft.h"
 #include "ft_printf.h"
@@ -44,7 +44,7 @@ t_vars	read_args(int argc, char **argv)
 	vars.fractal = select_fractal(argv[1]);
 	if (vars.fractal == NULL)
 	{
-		perror("Invalid fractal type. Use: julia, mandelbrot, burning_ship");
+		perror("Invalid fractal type. Use: julia, mandelbrot");
 		exit(EXIT_FAILURE);
 	}
 	vars.color = 0;
@@ -52,8 +52,8 @@ t_vars	read_args(int argc, char **argv)
 	vars.julia_cy = 0.27015;
 	if (argc == 4)
 	{
-		vars.julia_cx = ft_atoi(argv[2]);
-		vars.julia_cy = ft_atoi(argv[3]);
+		vars.julia_cx = ft_atof(argv[2]);
+		vars.julia_cy = ft_atof(argv[3]);
 	}
 	return (vars);
 }
@@ -65,40 +65,18 @@ int	key_hook(int keycode, t_vars *vars)
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
-	else if (keycode == LEFT_ARROW_KEY)
-		vars->x -= 0.1 / vars->zoom;
-	else if (keycode == RIGHT_ARROW_KEY)
-		vars->x += 0.1 / vars->zoom;
-	else if (keycode == DOWN_ARROW_KEY)
-		vars->y += 0.1 / vars->zoom;
-	else if (keycode == UP_ARROW_KEY)
-		vars->y -= 0.1 / vars->zoom;
-	else if (keycode == C_KEY)
-		vars->color = (vars->color + 1) % N_COLORS;
-	else if (keycode == R_KEY)
-	{
-		vars->y = 0;
-		vars->x = 0;
-		vars->zoom = 1;
-	}
 	draw(vars);
 	return (0);
 }
 
 int	mouse_hook(int button, int x, int y, t_vars *vars)
 {
+	(void)x;
+	(void)y;
 	if (button == MOUSE_UP)
-	{
 		vars->zoom *= ZOOM_FACTOR;
-		vars->x += (x - WIDTH / 2) / (vars->zoom * WIDTH);
-		vars->y += (y - HEIGHT / 2) / (vars->zoom * HEIGHT);
-	}
 	else if (button == MOUSE_DOWN)
-	{
 		vars->zoom /= ZOOM_FACTOR;
-		vars->x += (x - WIDTH / 2) / (vars->zoom * WIDTH);
-		vars->y += (y - HEIGHT / 2) / (vars->zoom * HEIGHT);
-	}
 	draw(vars);
 	return (0);
 }
@@ -117,7 +95,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 && argc != 4)
 	{
 		perror("Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]\n"
-			"<fractal_type> = {julia, mandelbrot, burning_ship}");
+			"<fractal_type> = {julia, mandelbrot}");
 		exit(EXIT_FAILURE);
 	}
 	vars = read_args(argc, argv);
@@ -126,9 +104,6 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	draw(&vars);
 	ft_printf("Controls:\n"
-		"C -> change color\n"
-		"R -> reset position\n"
-		"ARROWS -> move\n"
 		"MOUSE_WHEEL -> zoom\n");
 	mlx_loop(vars.mlx);
 	return (0);

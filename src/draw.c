@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <cde-la-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 17:37:42 by cde-la-r          #+#    #+#             */
-/*   Updated: 2024/07/13 17:37:23 by cde-la-r         ###   ########.fr       */
+/*   Created: 2024/10/31 02:49:10 by cde-la-r          #+#    #+#             */
+/*   Updated: 2024/10/31 02:49:42 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "complex.h"
 #include "vars.h"
 
-#define MAX_ITER 70
-#define THRESHOLD 4.0
+#define MAX_ITER 100
+#define THRESHOLD 3.0
 
 int	julia(int x, int y, t_vars *vars)
 {
@@ -61,36 +61,12 @@ int	mandelbrot(int x, int y, t_vars *vars)
 	return (i);
 }
 
-int	burning_ship(int x, int y, t_vars *vars)
-{
-	int			i;
-	t_complex	z;
-	t_complex	c;
-	t_complex	tmp;
-
-	z.x = 0;
-	z.y = 0;
-	c.x = 1.5 * (x - WIDTH / 2) / (0.5 * vars->zoom * WIDTH) + vars->x;
-	c.y = (y - HEIGHT / 2) / (0.5 * vars->zoom * HEIGHT) + vars->y;
-	i = 0;
-	while (z.x * z.x + z.y * z.y < THRESHOLD && i < MAX_ITER)
-	{
-		tmp = z;
-		z.x = fabs(tmp.x * tmp.x - tmp.y * tmp.y + c.x);
-		z.y = fabs(2 * tmp.x * tmp.y + c.y);
-		i++;
-	}
-	return (i);
-}
-
 int	(*select_fractal(char *str))(int x, int y, t_vars *vars)
 {
 	if (!ft_strncmp(str, "julia", 6))
 		return (julia);
 	if (!ft_strncmp(str, "mandelbrot", 11))
 		return (mandelbrot);
-	if (!ft_strncmp(str, "burning_ship", 13))
-		return (burning_ship);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cde-la-r <cde-la-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:36:57 by cde-la-r          #+#    #+#             */
-/*   Updated: 2024/07/13 17:37:23 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:34:05 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 600
 # define HEIGHT 600
 
-typedef struc s_vars
+typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
