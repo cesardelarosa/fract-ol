@@ -3,7 +3,7 @@
 	url = https://github.com/42Paris/minilibx-linux
 [submodule "libft"]
 	path = libft
-	url = https://github.com/cesardelarosa/libft
+	url = git@github.com:cesardelarosa/libft.git
 [submodule "ft_printf"]
 	path = ft_printf
-	url = https://github.com/cesardelarosa/ft_printf
+	url = git@github.com:cesardelarosa/ft_printf.git
