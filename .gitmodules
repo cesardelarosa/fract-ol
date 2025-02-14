@@ -1,0 +1,9 @@
+[submodule "minilibx"]
+	path = minilibx
+	url = https://github.com/42Paris/minilibx-linux
+[submodule "libft"]
+	path = libft
+	url = https://github.com/cesardelarosa/libft
+[submodule "ft_printf"]
+	path = ft_printf
+	url = https://github.com/cesardelarosa/ft_printf
