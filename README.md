@@ -9,7 +9,7 @@ Un proyecto de visualización de fractales utilizando la biblioteca MiniLibX.
 Descargar, compilar y ejecutar el programa en una linea y desde cero:
 
 ```bash
-$ git clone --recursive https://github.com/cesardelarosa/fract-ol.git && cd fract-ol && make && ./fractol julia
+git clone --recursive https://github.com/cesardelarosa/fract-ol.git && cd fract-ol && make && ./fractol julia
 ```
 
 ---
