@@ -6,11 +6,10 @@
 /*   By: cde-la-r <cde-la-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:50:03 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/08 19:41:24 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/14 13:06:51 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 #include "mlx.h"
 #include "utils.h"

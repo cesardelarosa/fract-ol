@@ -1,15 +1,18 @@
 NAME = fractol
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -L./minilibx -L./libft -L./ft_printf -lmlx -lXext -lX11 -lm
-INCLUDE = -I./include -I./minilibx -I./ft_printf -I./libft
-
+INCLUDE_DIR = include
 SRC_DIR = src
 OBJ_DIR = obj
+LIBFT_DIR = libft
+MINILIBX_DIR = minilibx
 
 SRC_FILES = main.c draw.c
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+LDFLAGS = -L $(LIBFT_DIR) -L $(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lft
+INCLUDE = -I $(INCLUDE_DIR) -I $(MINILIBX_DIR) -I $(LIBFT_DIR)
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -17,19 +20,17 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJ_FILES)
-	@make -C minilibx
-	@make -C ft_printf
-	@make -C libft
-	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS) -lft -lftprintf
+	@make -C $(LIBFT_DIR) all printf
+	@make -C $(MINILIBX_DIR)
+	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
-	@make -C minilibx clean
-	@make -C ft_printf clean
-	@make -C libft clean
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MINILIBX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
