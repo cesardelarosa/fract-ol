@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <cde-la-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/15 21:37:08 by cde-la-r          #+#    #+#             */
-/*   Updated: 2024/07/13 17:37:23 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/15 11:14:45 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/15 11:14:47 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef PARSER_H
+# define PARSER_H
 
-# include "vars.h"
+# include "fractol.h"
 
-void	draw(t_vars *vars);
-int	(*select_fractal(char *str))(int x, int y, t_vars *vars);
+t_vars	read_args(int argc, char **argv);
 
 #endif

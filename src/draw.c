@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <cde-la-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 17:37:42 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/14 10:42:44 by cesi             ###   ########.fr       */
+/*   Created: 2025/02/15 11:17:21 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/15 11:32:54 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "mlx.h"
+#include "fractol.h"
 #include "libft.h"
-#include "complex.h"
-#include "vars.h"
-
-#define MAX_ITER 100
-#define THRESHOLD 3.0
+#include "mlx.h"
+#include <math.h>
 
 int	julia(int x, int y, t_vars *vars)
 {
@@ -85,24 +81,32 @@ int	burning_ship(int x, int y, t_vars *vars)
 	return (i);
 }
 
-int	(*select_fractal(char *str))(int x, int y, t_vars *vars)
+static unsigned int	get_color(int iter, t_vars *vars)
 {
-	if (!ft_strncmp(str, "julia", 6))
-		return (julia);
-	if (!ft_strncmp(str, "mandelbrot", 11))
-		return (mandelbrot);
-	if (!ft_strncmp(str, "burning_ship", 13))
-		return (burning_ship);
-	return (NULL);
+	double			t;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+
+	if (iter >= MAX_ITER)
+		return (0);
+	t = (double)iter / MAX_ITER;
+	r = (unsigned char)(9 * (1 - t) * t * t * t * 255);
+	g = (unsigned char)(15 * (1 - t) * (1 - t) * t * t * 255);
+	b = (unsigned char)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	r = (r + vars->color * 30) % 256;
+	g = (g + vars->color * 50) % 256;
+	b = (b + vars->color * 70) % 256;
+	return ((r << 16) | (g << 8) | b);
 }
 
 void	draw(t_vars *vars)
 {
-	int		x;
-	int		y;
-	int		i;
-	int		offset;
-	int		bpp;
+	int	x;
+	int	y;
+	int	iter;
+	int	offset;
+	int	bpp;
 
 	bpp = vars->bpp / 8;
 	y = 0;
@@ -112,13 +116,9 @@ void	draw(t_vars *vars)
 		x = 0;
 		while (x < WIDTH)
 		{
-			i = vars->fractal(x, y, vars);
-			if (i >= MAX_ITER)
-				i = 0;
-			i *= (vars->color + 1);
-			vars->data[offset + x * bpp] = (unsigned char)(32 * i % 256);
-			vars->data[offset + x * bpp + 1] = (unsigned char)(48 * i % 256);
-			vars->data[offset + x * bpp + 2] = (unsigned char)(40 * i % 256);
+			iter = vars->fractal(x, y, vars);
+			*((unsigned int *)(vars->data + offset + x * bpp)) = get_color(iter,
+					vars);
 			x++;
 		}
 		y++;
