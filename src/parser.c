@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:57 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 11:16:59 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:20:28 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "mlx.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-int	(*select_fractal(char *str))(int x, int y, t_vars *vars)
+double	(*select_fractal(char *str))(int x, int y, t_vars *vars)
 {
 	if (!ft_strncmp(str, "julia", 6))
 		return (julia);
@@ -30,6 +31,12 @@ t_vars	read_args(int argc, char **argv)
 {
 	t_vars	vars;
 
+	if (argc != 2 && (argc != 4 || ft_strncmp(argv[1], "julia", 6)))
+	{
+		perror("Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]\n"
+			"<fractal_type> = {julia, mandelbrot, burning_ship}");
+		exit(EXIT_FAILURE);
+	}
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "fractol");
 	vars.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);

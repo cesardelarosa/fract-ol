@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vars.h                                             :+:      :+:    :+:   */
+/*   fractals.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:13:45 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 11:48:10 by cesi             ###   ########.fr       */
+/*   Created: 2025/02/15 12:18:55 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/15 12:19:01 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARS_H
-# define VARS_H
+#ifndef FRACTALS_H
+# define FRACTALS_H
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*data;
-	int		bpp;
-	int		sline;
-	int		end;
-	double	x;
-	double	y;
-	double	zoom;
-	double	(*fractal)(int x, int y, struct s_vars *vars);
-	int		color;
-	double	julia_cx;
-	double	julia_cy;
-}	t_vars;
+# include "vars.h"
+
+double	julia(int x, int y, t_vars *vars);
+double	mandelbrot(int x, int y, t_vars *vars);
+double	burning_ship(int x, int y, t_vars *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:15:52 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 11:15:57 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:10:29 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
-	if (argc != 2 && (argc != 4 || ft_strncmp(argv[1], "julia", 6)))
-	{
-		perror("Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]\n"
-			"<fractal_type> = {julia, mandelbrot, burning_ship}");
-		exit(EXIT_FAILURE);
-	}
 	vars = read_args(argc, argv);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, CLOSE_WIN, 0, close_window, &vars);

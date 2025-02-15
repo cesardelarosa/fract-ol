@@ -5,23 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:13:07 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 11:13:25 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/15 12:16:05 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/15 12:19:30 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <stdlib.h>
-# include <stdio.h>
-
 # include "vars.h"
 # include "complex.h"
+# include "fractals.h"
+# include "draw.h"
 # include "hooks.h"
 # include "parser.h"
-# include "draw.h"
 
+/* Constantes globales */
 # define WIDTH 500
 # define HEIGHT 500
 

@@ -6,7 +6,7 @@ OBJ_DIR = obj
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
-SRC_FILES = main.c hooks.c parser.c draw.c
+SRC_FILES = main.c hooks.c parser.c draw.c fractals.c
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
