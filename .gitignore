@@ -1,0 +1,10 @@
+*
+!.gitignore
+!.gitmodules
+!*/
+!include/*
+!libft/*
+!src/*
+!minilibx/*
+!Makefile
+!README.md
