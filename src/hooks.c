@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:14 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 11:16:16 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/17 22:49:56 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,24 @@
 #include "mlx.h"
 #include <stdlib.h>
 
+static void	cleanup(t_vars *vars)
+{
+	if (vars->img)
+		mlx_destroy_image(vars->mlx, vars->img);
+	if (vars->win)
+		mlx_destroy_window(vars->mlx, vars->win);
+	if (vars->mlx)
+	{
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
+	}
+}
+
 int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == ESC_KEY)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		cleanup(vars);
 		exit(0);
 	}
 	else if (keycode == LEFT_ARROW_KEY)
@@ -71,7 +84,7 @@ int	mouse_hook(int button, int x, int y, t_vars *vars)
 
 int	close_window(t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
+	cleanup(vars);
 	exit(0);
 	return (0);
 }
