@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 12:16:05 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 12:19:30 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/17 17:09:03 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define RIGHT_ARROW_KEY 65363
 # define DOWN_ARROW_KEY 65364
 
-# define ZOOM_FACTOR 1.1
+# define ZOOM_FACTOR 1.08
 # define N_COLORS 10
 
 #endif

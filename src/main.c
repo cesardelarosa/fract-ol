@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:15:52 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 12:10:29 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/17 17:05:07 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	main(int argc, char **argv)
 	mlx_hook(vars.win, CLOSE_WIN, 0, close_window, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	draw(&vars);
-	ft_printf("Controls:\n"
-		"C -> change color\n"
-		"R -> reset position\n"
-		"ARROWS -> move\n"
-		"MOUSE_WHEEL -> zoom\n");
+	ft_printf("\n\tControls:\n\n"
+		"\tESC KEY\t\t->\texit\n"
+		"\tC KEY\t\t->\tchange color\n"
+		"\tR KEY\t\t->\treset position\n"
+		"\tARROWS\t\t->\tmove\n"
+		"\tMOUSE WHEEL\t->\tzoom\n");
 	mlx_loop(vars.mlx);
 	return (0);
 }

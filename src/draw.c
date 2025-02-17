@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:17:21 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 12:23:56 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/17 17:16:12 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 #include "calc.h"
 #include <math.h>
 
-double	julia(int x, int y, t_vars *vars)
+double	julia(t_pixel p, t_vars *vars)
 {
-	return (calc_fractal(x, y, vars, init_julia, update_standard));
+	return (calc_fractal(p, vars, init_julia, update_standard));
 }
 
-double	mandelbrot(int x, int y, t_vars *vars)
+double	mandelbrot(t_pixel p, t_vars *vars)
 {
-	return (calc_fractal(x, y, vars, init_mandelbrot, update_standard));
+	return (calc_fractal(p, vars, init_mandelbrot, update_standard));
 }
 
-double	burning_ship(int x, int y, t_vars *vars)
+double	burning_ship(t_pixel p, t_vars *vars)
 {
-	return (calc_fractal(x, y, vars, init_mandelbrot, update_burning_ship));
+	return (calc_fractal(p, vars, init_mandelbrot, update_burning_ship));
 }
 
 static unsigned int	get_color(double iter, t_vars *vars)
@@ -52,26 +52,25 @@ static unsigned int	get_color(double iter, t_vars *vars)
 
 void	draw(t_vars *vars)
 {
-	int				x;
-	int				y;
+	t_pixel			p;
 	int				offset;
 	int				bpp;
 	double			i;
 
 	bpp = vars->bpp / 8;
-	y = 0;
-	while (y < HEIGHT)
+	p.y = 0;
+	while (p.y < HEIGHT)
 	{
-		offset = y * vars->sline;
-		x = 0;
-		while (x < WIDTH)
+		offset = p.y * vars->sline;
+		p.x = 0;
+		while (p.x < WIDTH)
 		{
-			i = vars->fractal(x, y, vars);
-			*((unsigned int *)(vars->data + offset + x * bpp))
+			i = vars->fractal(p, vars);
+			*((unsigned int *)(vars->data + offset + p.x * bpp))
 				= get_color(i, vars);
-			x++;
+			p.x++;
 		}
-		y++;
+		p.y++;
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }

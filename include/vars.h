@@ -6,12 +6,18 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:13:45 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/15 11:48:10 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/17 17:11:48 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VARS_H
 # define VARS_H
+
+typedef struct s_pixel
+{
+	int	x;
+	int	y;
+}	t_pixel;
 
 typedef struct s_vars
 {
@@ -25,7 +31,7 @@ typedef struct s_vars
 	double	x;
 	double	y;
 	double	zoom;
-	double	(*fractal)(int x, int y, struct s_vars *vars);
+	double	(*fractal)(t_pixel p, struct s_vars *vars);
 	int		color;
 	double	julia_cx;
 	double	julia_cy;
