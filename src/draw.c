@@ -6,14 +6,13 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:17:21 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/17 17:16:12 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/17 19:40:07 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 #include "mlx.h"
-#include "calc.h"
 #include <math.h>
 
 double	julia(t_pixel p, t_vars *vars)
