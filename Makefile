@@ -13,7 +13,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L $(LIBFT_DIR) -L $(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lft
 INCLUDE = -I $(INCLUDE_DIR) -I $(MINILIBX_DIR) -I $(LIBFT_DIR)
-SANITIZE = -fsanitize=address -g
+SANITIZE = -g3 -fsanitize=address -fsanitize=undefined
 
 GREEN = \033[0;32m
 BLUE  = \033[0;34m
