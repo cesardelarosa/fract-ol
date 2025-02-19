@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:57 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 16:23:49 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:27:22 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void	ft_error(t_vars *vars, char *str)
 {
-	perror(str);
+	ft_putstr_fd(str, 2);
 	if (vars)
 		cleanup(vars);
 	exit(EXIT_FAILURE);
@@ -50,7 +50,7 @@ static void	select_fractal(char *str, t_vars *vars)
 		}
 		i++;
 	}
-	ft_error(vars, "Tipo de fractal inválido. Usa: " FRACTALS ", " FRACTALS2);
+	ft_error(vars, "Invalid fractal type. Use: " FRACTALS ", " FRACTALS2 "\n");
 }
 
 t_vars	parser(int argc, char **argv)
@@ -62,6 +62,7 @@ t_vars	parser(int argc, char **argv)
 		ft_error(NULL, "Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]"
 			"\n<fractal_type> = " FRACTALS ", " FRACTALS2 "\n");
 	}
+	select_fractal(argv[1], &vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "fractol");
 	vars.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
@@ -69,7 +70,6 @@ t_vars	parser(int argc, char **argv)
 	vars.x = 0;
 	vars.y = 0;
 	vars.zoom = 1;
-	select_fractal(argv[1], &vars);
 	vars.color = 0;
 	vars.julia.x = -0.7;
 	vars.julia.y = 0.27015;
