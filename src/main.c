@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:15:52 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/17 17:05:07 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/18 19:53:47 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	main(int argc, char **argv)
 		"\tC KEY\t\t->\tchange color\n"
 		"\tR KEY\t\t->\treset position\n"
 		"\tARROWS\t\t->\tmove\n"
-		"\tMOUSE WHEEL\t->\tzoom\n");
+		"\tMOUSE WHEEL\t->\tzoom\n"
+		"\tLEFT CLICK\t->\tmandelbrot to julia / julia to mandelbrot\n");
 	mlx_loop(vars.mlx);
 	return (0);
 }

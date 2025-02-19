@@ -6,17 +6,17 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 19:36:58 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/17 19:39:46 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/19 01:01:20 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 600
+# define HEIGHT 400
 # define MAX_ITER 100
-# define THRESHOLD 3.0
+# define THRESHOLD 4.0
 
 # define MOUSE_UP 4
 # define MOUSE_DOWN 5
@@ -29,8 +29,11 @@
 # define RIGHT_ARROW_KEY 65363
 # define DOWN_ARROW_KEY 65364
 
+# define X_VIEW 3.6
+# define Y_VIEW 2.4
+
 # define ZOOM_FACTOR 1.08
-# define N_COLORS 10
+# define N_COLORS 15
 
 typedef struct s_pixel
 {

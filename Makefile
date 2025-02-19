@@ -52,9 +52,4 @@ fclean: clean
 
 re: fclean all
 
-check: CFLAGS += $(SANITIZE)
-check: re
-	@echo "$(BLUE)[fractol] Ejecutando norminette...$(NC)"
-	norminette $(INCLUDE_DIR) $(SRC_DIR) $(LIBFT_DIR)
-
-.PHONY: all clean fclean re sanitize
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:14 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/17 22:49:56 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/19 00:52:21 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,48 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
+static void	toggle_fractal(int x, int y, t_vars *vars)
+{
+	if (vars->fractal == mandelbrot)
+	{
+		vars->julia_cx = X_VIEW / (vars->zoom * WIDTH) * (x - WIDTH / 2.0)
+			+ vars->x;
+		vars->julia_cy = Y_VIEW / (vars->zoom * HEIGHT) * (y - HEIGHT / 2.0)
+			+ vars->y;
+		vars->fractal = julia;
+	}
+	else if (vars->fractal == julia)
+		vars->fractal = mandelbrot;
+	vars->zoom = 1;
+	vars->x = 0;
+	vars->y = 0;
+}
+
 int	mouse_hook(int button, int x, int y, t_vars *vars)
 {
-	double	old_zoom;
-	double	diff_x;
-	double	diff_y;
+	double		old_zoom;
+	t_complex	diff;
 
 	if (button == MOUSE_UP)
 	{
 		old_zoom = vars->zoom;
 		vars->zoom *= ZOOM_FACTOR;
-		diff_x = (3.0 / (old_zoom * WIDTH)) - (3.0 / (vars->zoom * WIDTH));
-		diff_y = (2.0 / (old_zoom * HEIGHT)) - (2.0 / (vars->zoom * HEIGHT));
-		vars->x += (x - WIDTH / 2) * diff_x;
-		vars->y += (y - HEIGHT / 2) * diff_y;
+		diff.x = (X_VIEW / (old_zoom * WIDTH)) - (X_VIEW / (vars->zoom * WIDTH));
+		diff.y = (Y_VIEW / (old_zoom * HEIGHT)) - (Y_VIEW / (vars->zoom * HEIGHT));
+		vars->x += (x - WIDTH / 2) * diff.x;
+		vars->y += (y - HEIGHT / 2) * diff.y;
 	}
 	else if (button == MOUSE_DOWN)
 	{
 		old_zoom = vars->zoom;
 		vars->zoom /= ZOOM_FACTOR;
-		diff_x = (3.0 / (old_zoom * WIDTH)) - (3.0 / (vars->zoom * WIDTH));
-		diff_y = (2.0 / (old_zoom * HEIGHT)) - (2.0 / (vars->zoom * HEIGHT));
-		vars->x += (x - WIDTH / 2) * diff_x;
-		vars->y += (y - HEIGHT / 2) * diff_y;
+		diff.x = (X_VIEW / (old_zoom * WIDTH)) - (X_VIEW / (vars->zoom * WIDTH));
+		diff.y = (Y_VIEW / (old_zoom * HEIGHT)) - (Y_VIEW / (vars->zoom * HEIGHT));
+		vars->x += (x - WIDTH / 2) * diff.x;
+		vars->y += (y - HEIGHT / 2) * diff.y;
 	}
+	else if (button == 1)
+		toggle_fractal(x, y, vars);
 	draw(vars);
 	return (0);
 }

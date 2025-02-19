@@ -15,8 +15,8 @@
 
 void	init_julia(t_pixel p, t_vars *vars, t_complex *z, t_complex *c)
 {
-	z->x = 3.0 / (vars->zoom * WIDTH) * (p.x - WIDTH / 2.0) + vars->x;
-	z->y = 2.0 / (vars->zoom * HEIGHT) * (p.y - HEIGHT / 2.0) + vars->y;
+	z->x = X_VIEW / (vars->zoom * WIDTH) * (p.x - WIDTH / 2.0) + vars->x;
+	z->y = Y_VIEW / (vars->zoom * HEIGHT) * (p.y - HEIGHT / 2.0) + vars->y;
 	c->x = vars->julia_cx;
 	c->y = vars->julia_cy;
 }
@@ -25,8 +25,8 @@ void	init_mandelbrot(t_pixel p, t_vars *vars, t_complex *z, t_complex *c)
 {
 	z->x = 0;
 	z->y = 0;
-	c->x = 3.0 / (vars->zoom * WIDTH) * (p.x - WIDTH / 2.0) + vars->x;
-	c->y = 2.0 / (vars->zoom * HEIGHT) * (p.y - HEIGHT / 2.0) + vars->y;
+	c->x = X_VIEW / (vars->zoom * WIDTH) * (p.x - WIDTH / 2.0) + vars->x;
+	c->y = Y_VIEW / (vars->zoom * HEIGHT) * (p.y - HEIGHT / 2.0) + vars->y;
 }
 
 void	update_standard(t_complex *z, t_complex *tmp, t_complex *c)
