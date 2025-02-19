@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:57 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 16:27:22 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:31:24 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	ft_error(t_vars *vars, char *str)
+static void	ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
-	if (vars)
-		cleanup(vars);
 	exit(EXIT_FAILURE);
 }
 
@@ -50,7 +48,7 @@ static void	select_fractal(char *str, t_vars *vars)
 		}
 		i++;
 	}
-	ft_error(vars, "Invalid fractal type. Use: " FRACTALS ", " FRACTALS2 "\n");
+	ft_error("Invalid fractal type. Use: " FRACTALS ", " FRACTALS2 "\n");
 }
 
 t_vars	parser(int argc, char **argv)
@@ -59,7 +57,7 @@ t_vars	parser(int argc, char **argv)
 
 	if (argc != 2 && (argc != 4 || ft_strncmp(argv[1], "julia", 6)))
 	{
-		ft_error(NULL, "Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]"
+		ft_error("Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]"
 			"\n<fractal_type> = " FRACTALS ", " FRACTALS2 "\n");
 	}
 	select_fractal(argv[1], &vars);
