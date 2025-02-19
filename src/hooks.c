@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:14 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 00:52:21 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 01:48:12 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static void	toggle_fractal(int x, int y, t_vars *vars)
 {
 	if (vars->fractal == mandelbrot)
 	{
-		vars->julia_cx = X_VIEW / (vars->zoom * WIDTH) * (x - WIDTH / 2.0)
+		vars->julia.x = X_VIEW / (vars->zoom * WIDTH) * (x - WIDTH / 2.0)
 			+ vars->x;
-		vars->julia_cy = Y_VIEW / (vars->zoom * HEIGHT) * (y - HEIGHT / 2.0)
+		vars->julia.y = Y_VIEW / (vars->zoom * HEIGHT) * (y - HEIGHT / 2.0)
 			+ vars->y;
 		vars->fractal = julia;
 	}
@@ -94,7 +94,7 @@ int	mouse_hook(int button, int x, int y, t_vars *vars)
 		vars->x += (x - WIDTH / 2) * diff.x;
 		vars->y += (y - HEIGHT / 2) * diff.y;
 	}
-	else if (button == 1)
+	else if (button == LEFT_CLICK)
 		toggle_fractal(x, y, vars);
 	draw(vars);
 	return (0);

@@ -45,12 +45,12 @@ static t_vars	vars_init(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	vars.color = 0;
-	vars.julia_cx = -0.7;
-	vars.julia_cy = 0.27015;
+	vars.julia.x = -0.7;
+	vars.julia.y = 0.27015;
 	if (argc == 4)
 	{
-		vars.julia_cx = ft_atof(argv[2]);
-		vars.julia_cy = ft_atof(argv[3]);
+		vars.julia.x = ft_atof(argv[2]);
+		vars.julia.y = ft_atof(argv[3]);
 	}
 	return (vars);
 }

@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 12:13:56 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/17 17:13:13 by cesi             ###   ########.fr       */
+/*   Updated: 2025/02/19 01:43:12 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_julia(t_pixel p, t_vars *vars, t_complex *z, t_complex *c)
 {
 	z->x = X_VIEW / (vars->zoom * WIDTH) * (p.x - WIDTH / 2.0) + vars->x;
 	z->y = Y_VIEW / (vars->zoom * HEIGHT) * (p.y - HEIGHT / 2.0) + vars->y;
-	c->x = vars->julia_cx;
-	c->y = vars->julia_cy;
+	c->x = vars->julia.x;
+	c->y = vars->julia.y;
 }
 
 void	init_mandelbrot(t_pixel p, t_vars *vars, t_complex *z, t_complex *c)
