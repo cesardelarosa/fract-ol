@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:17:21 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 17:02:28 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/19 17:05:56 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/19 17:05:57 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include "libft.h"
 #include "mlx.h"
 #include <math.h>
 
-static unsigned int	get_color(double iter)
+static unsigned int	get_color(double iter, t_vars *vars)
 {
 	double			t;
 	unsigned char	r;
@@ -28,7 +28,10 @@ static unsigned int	get_color(double iter)
 	r = (unsigned char)(9 * (1 - t) * t * t * t * 255);
 	g = (unsigned char)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (unsigned char)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-	return (r % 256 << 16 | g % 256 << 8 | b % 256);
+	r = (r + vars->color * 30) % 256;
+	g = (g + vars->color * 50) % 256;
+	b = (b + vars->color * 70) % 256;
+	return ((r << 16) | (g << 8) | b);
 }
 
 static double	calc_fractal(t_pixel p, t_vars *vars)
@@ -74,7 +77,7 @@ void	draw(t_vars *vars)
 		{
 			i = calc_fractal(p, vars);
 			*((unsigned int *)(vars->data + offset + p.x * bpp))
-				= get_color(i);
+				= get_color(i, vars);
 			p.x++;
 		}
 		p.y++;

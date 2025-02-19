@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:15:52 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 16:33:54 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/19 17:06:28 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/19 17:06:36 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include "libft.h"
 #include "mlx.h"
 
@@ -25,7 +25,11 @@ int	main(int argc, char **argv)
 	draw(&vars);
 	ft_printf("\n\tControls:\n\n"
 		"\tESC KEY\t\t->\texit\n"
-		"\tMOUSE WHEEL\t->\tzoom\n");
+		"\tC KEY\t\t->\tchange color\n"
+		"\tR KEY\t\t->\treset position\n"
+		"\tARROWS\t\t->\tmove\n"
+		"\tMOUSE WHEEL\t->\tzoom\n"
+		"\tLEFT CLICK\t->\tmandelbrot to julia / julia to mandelbrot\n");
 	mlx_loop(vars.mlx);
 	cleanup(&vars);
 	return (0);

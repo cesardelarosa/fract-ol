@@ -5,6 +5,7 @@
 !include/*
 !libft/*
 !src/*
+!bonus/*
 !minilibx/*
 !Makefile
 !README.md

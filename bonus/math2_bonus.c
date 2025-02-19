@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_bonus.c                                       :+:      :+:    :+:   */
+/*   math2_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:14:34 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 13:02:41 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/19 17:06:41 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/19 17:06:46 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include <math.h>
 
 void	update_burning_ship(t_complex *z, t_complex *tmp, t_complex *c)

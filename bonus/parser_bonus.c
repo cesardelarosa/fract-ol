@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:16:57 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 16:31:24 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/19 17:07:41 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/19 17:07:43 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 #include "libft.h"
 #include "mlx.h"
 #include <stdio.h>
@@ -29,6 +29,11 @@ static void	select_fractal(char *str, t_vars *vars)
 	const t_fractal	fractals[] = {
 	{"julia", init_julia, update_standard},
 	{"mandelbrot", init_mandelbrot, update_standard},
+	{"burning_ship", init_mandelbrot, update_burning_ship},
+	{"multibrot", init_mandelbrot, update_multibrot},
+	{"tricorn", init_mandelbrot, update_tricorn},
+	{"celtic", init_mandelbrot, update_celtic},
+	{"buffalo", init_mandelbrot, update_buffalo},
 	};
 
 	n = sizeof(fractals) / sizeof(fractals[0]);
@@ -43,7 +48,7 @@ static void	select_fractal(char *str, t_vars *vars)
 		}
 		i++;
 	}
-	ft_error("Invalid fractal type. Use: " FRACTALS "\n");
+	ft_error("Invalid fractal type. Use: " FRACTALS ", " FRACTALS2 "\n");
 }
 
 t_vars	parser(int argc, char **argv)
@@ -53,7 +58,7 @@ t_vars	parser(int argc, char **argv)
 	if (argc != 2 && (argc != 4 || ft_strncmp(argv[1], "julia", 6)))
 	{
 		ft_error("Usage: ./fractol <fractal_type> [<julia_cx> <julia_cy>]"
-			"\n<fractal_type> = " FRACTALS "\n");
+			"\n<fractal_type> = " FRACTALS ", " FRACTALS2 "\n");
 	}
 	select_fractal(argv[1], &vars);
 	vars.mlx = mlx_init();
