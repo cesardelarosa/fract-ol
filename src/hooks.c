@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:14 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 01:53:50 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 02:05:38 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,25 @@ static void	toggle_fractal(int x, int y, t_vars *vars)
 
 int	mouse_hook(int button, int x, int y, t_vars *vars)
 {
-	double		old_zoom;
-	t_complex	diff;
+	double	old_zoom;
 
 	if (button == MOUSE_UP)
 	{
 		old_zoom = vars->zoom;
 		vars->zoom *= ZOOM_FACTOR;
-		diff.x = (X_VIEW / (old_zoom * WIDTH)) - (X_VIEW / (vars->zoom * WIDTH));
-		diff.y = (Y_VIEW / (old_zoom * HEIGHT)) - (Y_VIEW / (vars->zoom * HEIGHT));
-		vars->x += (x - WIDTH / 2) * diff.x;
-		vars->y += (y - HEIGHT / 2) * diff.y;
+		vars->x += (x - WIDTH / 2) * ((X_VIEW / (old_zoom * WIDTH))
+				- (X_VIEW / (vars->zoom * WIDTH)));
+		vars->y += (y - HEIGHT / 2) * ((Y_VIEW / (old_zoom * HEIGHT))
+				- (Y_VIEW / (vars->zoom * HEIGHT)));
 	}
 	else if (button == MOUSE_DOWN)
 	{
 		old_zoom = vars->zoom;
 		vars->zoom /= ZOOM_FACTOR;
-		diff.x = (X_VIEW / (old_zoom * WIDTH)) - (X_VIEW / (vars->zoom * WIDTH));
-		diff.y = (Y_VIEW / (old_zoom * HEIGHT)) - (Y_VIEW / (vars->zoom * HEIGHT));
-		vars->x += (x - WIDTH / 2) * diff.x;
-		vars->y += (y - HEIGHT / 2) * diff.y;
+		vars->x += (x - WIDTH / 2) * ((X_VIEW / (old_zoom * WIDTH))
+				- (X_VIEW / (vars->zoom * WIDTH)));
+		vars->y += (y - HEIGHT / 2) * ((Y_VIEW / (old_zoom * HEIGHT))
+				- (Y_VIEW / (vars->zoom * HEIGHT)));
 	}
 	else if (button == LEFT_CLICK)
 		toggle_fractal(x, y, vars);
