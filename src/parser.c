@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:57 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 15:52:19 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:15:59 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 static void	ft_error(t_vars *vars, char *str)
 {
 	perror(str);
-	cleanup(vars);
+	if (vars)
+		cleanup(vars);
 	exit(EXIT_FAILURE);
 }
 
