@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:17:21 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 01:08:34 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:08:44 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 #include "libft.h"
 #include "mlx.h"
 #include <math.h>
-
-double	julia(t_pixel p, t_vars *vars)
-{
-	return (calc_fractal(p, vars, init_julia, update_standard));
-}
-
-double	mandelbrot(t_pixel p, t_vars *vars)
-{
-	return (calc_fractal(p, vars, init_mandelbrot, update_standard));
-}
-
-double	burning_ship(t_pixel p, t_vars *vars)
-{
-	return (calc_fractal(p, vars, init_mandelbrot, update_burning_ship));
-}
 
 static unsigned int	get_color(double iter, t_vars *vars)
 {
@@ -49,6 +34,32 @@ static unsigned int	get_color(double iter, t_vars *vars)
 	return ((r << 16) | (g << 8) | b);
 }
 
+static double	calc_fractal(t_pixel p, t_vars *vars)
+{
+	int			i;
+	t_complex	z;
+	t_complex	c;
+	t_complex	tmp;
+	double		smooth_iter;
+
+	vars->init_func(p, vars, &z, &c);
+	i = 0;
+	while (i < MAX_ITER && (z.x * z.x + z.y * z.y < THRESHOLD))
+	{
+		tmp = z;
+		vars->update_func(&z, &tmp, &c);
+		i++;
+	}
+	if (i < MAX_ITER)
+	{
+		smooth_iter = i + 1
+			- log(log(z.x * z.x + z.y * z.y) / 2.0 / log(2)) / log(2);
+	}
+	else
+		smooth_iter = i;
+	return (smooth_iter);
+}
+
 void	draw(t_vars *vars)
 {
 	t_pixel			p;
@@ -64,7 +75,7 @@ void	draw(t_vars *vars)
 		p.x = 0;
 		while (p.x < WIDTH)
 		{
-			i = vars->fractal(p, vars);
+			i = calc_fractal(p, vars);
 			*((unsigned int *)(vars->data + offset + p.x * bpp))
 				= get_color(i, vars);
 			p.x++;

@@ -56,16 +56,16 @@ int	key_hook(int keycode, t_vars *vars)
 
 static void	toggle_fractal(int x, int y, t_vars *vars)
 {
-	if (vars->fractal == mandelbrot)
+	if (vars->init_func == init_mandelbrot)
 	{
 		vars->julia.x = X_VIEW / (vars->zoom * WIDTH) * (x - WIDTH / 2.0)
 			+ vars->x;
 		vars->julia.y = Y_VIEW / (vars->zoom * HEIGHT) * (y - HEIGHT / 2.0)
 			+ vars->y;
-		vars->fractal = julia;
+		vars->init_func = init_julia;
 	}
-	else if (vars->fractal == julia)
-		vars->fractal = mandelbrot;
+	else if (vars->init_func == init_julia)
+		vars->init_func = init_mandelbrot;
 	vars->zoom = 1;
 	vars->x = 0;
 	vars->y = 0;

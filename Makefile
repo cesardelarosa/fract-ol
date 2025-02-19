@@ -6,14 +6,13 @@ OBJ_DIR = obj
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
-SRC_FILES = main.c hooks.c parser.c draw.c fractals.c
+SRC_FILES = main.c hooks.c parser.c draw.c math.c math_bonus.c
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L $(LIBFT_DIR) -L $(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lft
 INCLUDE = -I $(INCLUDE_DIR) -I $(MINILIBX_DIR) -I $(LIBFT_DIR)
-SANITIZE = -g3 -fsanitize=address -fsanitize=undefined
 
 GREEN = \033[0;32m
 BLUE  = \033[0;34m

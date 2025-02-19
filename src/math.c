@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractals.c                                         :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 12:13:56 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 01:43:12 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/19 11:29:06 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/19 15:57:04 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,4 @@ void	update_standard(t_complex *z, t_complex *tmp, t_complex *c)
 {
 	z->x = tmp->x * tmp->x - tmp->y * tmp->y + c->x;
 	z->y = 2 * tmp->x * tmp->y + c->y;
-}
-
-void	update_burning_ship(t_complex *z, t_complex *tmp, t_complex *c)
-{
-	z->x = fabs(tmp->x * tmp->x - tmp->y * tmp->y + c->x);
-	z->y = fabs(2 * tmp->x * tmp->y + c->y);
-}
-
-double	calc_fractal(t_pixel p, t_vars *vars,
-		void (*init_func)(t_pixel, t_vars*, t_complex*, t_complex*),
-		void (*update_func)(t_complex*, t_complex*, t_complex*))
-{
-	int			i;
-	t_complex	z;
-	t_complex	c;
-	t_complex	tmp;
-	double		smooth_iter;
-
-	init_func(p, vars, &z, &c);
-	i = 0;
-	while (i < MAX_ITER && (z.x * z.x + z.y * z.y < THRESHOLD))
-	{
-		tmp = z;
-		update_func(&z, &tmp, &c);
-		i++;
-	}
-	if (i < MAX_ITER)
-	{
-		smooth_iter = i + 1
-			- log(log(z.x * z.x + z.y * z.y) / 2.0 / log(2)) / log(2);
-	}
-	else
-		smooth_iter = i;
-	return (smooth_iter);
 }

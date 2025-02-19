@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:15:52 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/18 19:53:47 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:50:49 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
-	vars = read_args(argc, argv);
+	vars = parser(argc, argv);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, CLOSE_WIN, 0, close_window, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);

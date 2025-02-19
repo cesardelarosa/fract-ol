@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 19:36:58 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 01:49:02 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:02:24 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define ZOOM_FACTOR 1.08
 # define N_COLORS 15
 
+# define FRACTALS "julia, mandelbrot"
+# define FRACTALS2 "burning_ship, multibrot, tricorn, celtic, buffalo"
+
 typedef struct s_pixel
 {
 	int			x;
@@ -60,25 +63,32 @@ typedef struct s_vars
 	double		x;
 	double		y;
 	double		zoom;
-	double		(*fractal)(t_pixel p, struct s_vars *vars);
+	void		(*init_func)(t_pixel, struct s_vars*, t_complex*, t_complex*);
+	void		(*update_func)(t_complex*, t_complex*, t_complex*);
 	int			color;
 	t_complex	julia;
 }				t_vars;
+
+typedef struct s_fractal
+{
+	const char	*name;
+	void		(*init_func)(t_pixel, t_vars *, t_complex *, t_complex *);
+	void		(*update_func)(t_complex *, t_complex *, t_complex *);
+}	t_fractal;
 
 void	cleanup(t_vars *vars);
 
 void	init_julia(t_pixel p, t_vars *vars, t_complex *z, t_complex *c);
 void	init_mandelbrot(t_pixel p, t_vars *vars, t_complex *z,
 			t_complex *c);
-void	update_standard(t_complex *z, t_complex *tmp, t_complex *c);
-void	update_burning_ship(t_complex *z, t_complex *tmp, t_complex *c);
-double	calc_fractal(t_pixel p, t_vars *vars,
-			void (*init_func)(t_pixel, t_vars *, t_complex *, t_complex *),
-			void (*update_func)(t_complex *, t_complex *, t_complex *));
 
-double	julia(t_pixel p, t_vars *vars);
-double	mandelbrot(t_pixel p, t_vars *vars);
-double	burning_ship(t_pixel p, t_vars *vars);
+void	update_standard(t_complex *z, t_complex *tmp, t_complex *c);
+
+void	update_burning_ship(t_complex *z, t_complex *tmp, t_complex *c);
+void	update_multibrot(t_complex *z, t_complex *tmp, t_complex *c);
+void	update_tricorn(t_complex *z, t_complex *tmp, t_complex *c);
+void	update_celtic(t_complex *z, t_complex *tmp, t_complex *c);
+void	update_buffalo(t_complex *z, t_complex *tmp, t_complex *c);
 
 void	draw(t_vars *vars);
 
@@ -86,6 +96,6 @@ int		key_hook(int keycode, t_vars *vars);
 int		mouse_hook(int button, int x, int y, t_vars *vars);
 int		close_window(t_vars *vars);
 
-t_vars	read_args(int argc, char **argv);
+t_vars	parser(int argc, char **argv);
 
 #endif
