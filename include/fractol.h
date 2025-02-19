@@ -65,6 +65,8 @@ typedef struct s_vars
 	t_complex	julia;
 }				t_vars;
 
+void	cleanup(t_vars *vars);
+
 void	init_julia(t_pixel p, t_vars *vars, t_complex *z, t_complex *c);
 void	init_mandelbrot(t_pixel p, t_vars *vars, t_complex *z,
 			t_complex *c);

@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 11:16:14 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 01:48:12 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/02/19 01:53:50 by cde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-static void	cleanup(t_vars *vars)
+void	cleanup(t_vars *vars)
 {
 	if (vars->img)
 		mlx_destroy_image(vars->mlx, vars->img);

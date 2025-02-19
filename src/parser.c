@@ -42,6 +42,7 @@ static t_vars	vars_init(int argc, char **argv)
 	if (vars.fractal == NULL)
 	{
 		perror("Invalid fractal type. Use: julia, mandelbrot, burning_ship");
+		cleanup(&vars);
 		exit(EXIT_FAILURE);
 	}
 	vars.color = 0;
