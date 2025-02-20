@@ -1,4 +1,5 @@
 NAME = fractol
+
 INCLUDE_DIR = include
 SRC_DIR = src
 BONUS_DIR = bonus
@@ -28,29 +29,29 @@ all: mandatory
 
 mandatory:
 	@if [ -f $(MODE_FILE) ] && [ "$$(cat $(MODE_FILE))" = "mandatory" ]; then \
-	    echo "[fractol] La versión mandatory ya está compilada."; \
+	    echo "[fractol] The mandatory version is already compiled."; \
 	else \
 	    $(MAKE) re_mandatory; \
 	fi
 
 bonus:
 	@if [ -f $(MODE_FILE) ] && [ "$$(cat $(MODE_FILE))" = "bonus" ]; then \
-	    echo "[fractol] La versión bonus ya está compilada."; \
+	    echo "[fractol] The bonus version is already compiled."; \
 	else \
 	    $(MAKE) re_bonus; \
 	fi
 
 re_mandatory: $(OBJ_DIR) $(MANDATORY_OBJ) $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a
-	@echo "$(BLUE)[fractol] Linkeando y generando el ejecutable MANDATORY...$(NC)"
+	@echo "$(BLUE)[fractol] Linking and generating the MANDATORY executable...$(NC)"
 	$(CC) $(CFLAGS) $(MANDATORY_OBJ) -o $(NAME) $(LDFLAGS)
 	@echo "mandatory" > $(MODE_FILE)
-	@echo "$(GREEN)[fractol] Compilación MANDATORY completada$(NC)"
+	@echo "$(GREEN)[fractol] MANDATORY compilation completed$(NC)"
 
 re_bonus: $(OBJ_DIR) $(BONUS_OBJ) $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a
-	@echo "$(BLUE)[fractol] Linkeando y generando el ejecutable BONUS...$(NC)"
+	@echo "$(BLUE)[fractol] Linking and generating the BONUS executable...$(NC)"
 	$(CC) $(CFLAGS) $(BONUS_OBJ) -o $(NAME) $(LDFLAGS)
 	@echo "bonus" > $(MODE_FILE)
-	@echo "$(GREEN)[fractol] Compilación BONUS completada$(NC)"
+	@echo "$(GREEN)[fractol] BONUS compilation completed$(NC)"
 
 $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR) complete
@@ -59,25 +60,25 @@ $(MINILIBX_DIR)/libmlx.a:
 	$(MAKE) -C $(MINILIBX_DIR)
 
 $(OBJ_DIR):
-	@echo "$(BLUE)[fractol] Creando directorio de objetos...$(NC)"
+	@echo "$(BLUE)[fractol] Creating objects directory...$(NC)"
 	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@echo "$(YELLOW)[fractol] Compilando $<...$(NC)"
+	@echo "$(YELLOW)[fractol] Compiling $<...$(NC)"
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR)
-	@echo "$(YELLOW)[fractol] Compilando bonus $<...$(NC)"
+	@echo "$(YELLOW)[fractol] Compiling bonus $<...$(NC)"
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	@echo "$(RED)[fractol] Limpiando objetos...$(NC)"
+	@echo "$(RED)[fractol] Cleaning object files...$(NC)"
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MINILIBX_DIR) clean
 
 fclean: clean
-	@echo "$(RED)[fractol] Eliminando ejecutable y archivo de modo...$(NC)"
+	@echo "$(RED)[fractol] Removing executable and mode file...$(NC)"
 	rm -f $(NAME)
 	rm -f $(MODE_FILE)
 

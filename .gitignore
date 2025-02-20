@@ -6,8 +6,8 @@
 !libft/*.h
 !libft/*.c
 !libft/Makefile
-!src/*.h
-!bonus/*.h
+!src/*.c
+!bonus/*.c
 !minilibx/*
 !Makefile
 !README.md
