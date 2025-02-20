@@ -12,7 +12,7 @@ MANDATORY_OBJ = $(MANDATORY_SRC:%.c=$(OBJ_DIR)/%.o)
 BONUS_SRC = main_bonus.c hooks_bonus.c parser_bonus.c draw_bonus.c math_bonus.c math2_bonus.c
 BONUS_OBJ = $(BONUS_SRC:%.c=$(OBJ_DIR)/%.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L $(LIBFT_DIR) -L $(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lft
 INCLUDE = -I $(INCLUDE_DIR) -I $(MINILIBX_DIR) -I $(LIBFT_DIR)
