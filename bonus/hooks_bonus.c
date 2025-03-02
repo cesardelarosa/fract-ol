@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:06:10 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 17:14:05 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/03/02 18:03:25 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,20 @@ int	key_hook(int keycode, t_vars *vars)
 
 static void	toggle_fractal(int x, int y, t_vars *vars)
 {
-	if (vars->init_func == init_mandelbrot)
+	if (vars->fractal.init_func == init_mandelbrot)
 	{
 		vars->julia.x = X_VIEW / (vars->zoom * WIDTH) * (x - WIDTH / 2.0)
 			+ vars->x;
 		vars->julia.y = Y_VIEW / (vars->zoom * HEIGHT) * (y - HEIGHT / 2.0)
 			+ vars->y;
-		vars->init_func = init_julia;
+		vars->fractal.init_func = init_julia;
 	}
-	else if (vars->init_func == init_julia)
-		vars->init_func = init_mandelbrot;
+	else if (vars->fractal.init_func == init_julia)
+		vars->fractal.init_func = init_mandelbrot;
 	vars->zoom = 1;
 	vars->x = 0;
 	vars->y = 0;
+	vars->info_update = 1;
 }
 
 int	mouse_hook(int button, int x, int y, t_vars *vars)

@@ -10,7 +10,7 @@ MINILIBX_DIR = minilibx
 MANDATORY_SRC = main.c hooks.c parser.c draw.c math.c
 MANDATORY_OBJ = $(MANDATORY_SRC:%.c=$(OBJ_DIR)/%.o)
 
-BONUS_SRC = main_bonus.c hooks_bonus.c parser_bonus.c draw_bonus.c math_bonus.c math2_bonus.c
+BONUS_SRC = main_bonus.c hooks_bonus.c parser_bonus.c draw_bonus.c math_bonus.c math2_bonus.c info_bonus.c color_bonus.c
 BONUS_OBJ = $(BONUS_SRC:%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
@@ -29,29 +29,29 @@ all: mandatory
 
 mandatory:
 	@if [ -f $(MODE_FILE) ] && [ "$$(cat $(MODE_FILE))" = "mandatory" ]; then \
-	    echo "[fractol] The mandatory version is already compiled."; \
+	    printf "[fractol] The mandatory version is already compiled.\n”"; \
 	else \
 	    $(MAKE) re_mandatory; \
 	fi
 
 bonus:
 	@if [ -f $(MODE_FILE) ] && [ "$$(cat $(MODE_FILE))" = "bonus" ]; then \
-	    echo "[fractol] The bonus version is already compiled."; \
+	    printf "[fractol] The bonus version is already compiled.\n"; \
 	else \
 	    $(MAKE) re_bonus; \
 	fi
 
 re_mandatory: $(OBJ_DIR) $(MANDATORY_OBJ) $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a
-	@echo "$(BLUE)[fractol] Linking and generating the MANDATORY executable...$(NC)"
+	@printf "$(BLUE)[fractol] Linking and generating the MANDATORY executable...$(NC)\n"
 	$(CC) $(CFLAGS) $(MANDATORY_OBJ) -o $(NAME) $(LDFLAGS)
-	@echo "mandatory" > $(MODE_FILE)
-	@echo "$(GREEN)[fractol] MANDATORY compilation completed$(NC)"
+	@printf "mandatory\n" > $(MODE_FILE)
+	@printf "$(GREEN)[fractol] MANDATORY compilation completed$(NC)\n"
 
 re_bonus: $(OBJ_DIR) $(BONUS_OBJ) $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a
-	@echo "$(BLUE)[fractol] Linking and generating the BONUS executable...$(NC)"
+	@printf "$(BLUE)[fractol] Linking and generating the BONUS executable...$(NC)\n"
 	$(CC) $(CFLAGS) $(BONUS_OBJ) -o $(NAME) $(LDFLAGS)
-	@echo "bonus" > $(MODE_FILE)
-	@echo "$(GREEN)[fractol] BONUS compilation completed$(NC)"
+	@printf "bonus\n" > $(MODE_FILE)
+	@printf "$(GREEN)[fractol] BONUS compilation completed$(NC)\n"
 
 $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR) complete
@@ -60,25 +60,25 @@ $(MINILIBX_DIR)/libmlx.a:
 	$(MAKE) -C $(MINILIBX_DIR)
 
 $(OBJ_DIR):
-	@echo "$(BLUE)[fractol] Creating objects directory...$(NC)"
+	@printf "$(BLUE)[fractol] Creating objects directory...$(NC)\n"
 	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@echo "$(YELLOW)[fractol] Compiling $<...$(NC)"
+	@printf "$(YELLOW)[fractol] Compiling $<...$(NC)\n"
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR)
-	@echo "$(YELLOW)[fractol] Compiling bonus $<...$(NC)"
+	@printf "$(YELLOW)[fractol] Compiling bonus $<...$(NC)\n"
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	@echo "$(RED)[fractol] Cleaning object files...$(NC)"
+	@printf "$(RED)[fractol] Cleaning object files...$(NC)\n"
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MINILIBX_DIR) clean
 
 fclean: clean
-	@echo "$(RED)[fractol] Removing executable and mode file...$(NC)"
+	@printf "$(RED)[fractol] Removing executable and mode file...$(NC)\n"
 	rm -f $(NAME)
 	rm -f $(MODE_FILE)
 

@@ -6,7 +6,7 @@
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:05:56 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/19 17:05:57 by cde-la-r         ###   ########.fr       */
+/*   Updated: 2025/03/02 20:59:40 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,72 +15,44 @@
 #include "mlx.h"
 #include <math.h>
 
-static unsigned int	get_color(double iter, t_vars *vars)
-{
-	double			t;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-
-	if (iter >= MAX_ITER)
-		return (0);
-	t = iter / MAX_ITER;
-	r = (unsigned char)(9 * (1 - t) * t * t * t * 255);
-	g = (unsigned char)(15 * (1 - t) * (1 - t) * t * t * 255);
-	b = (unsigned char)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-	r = (r + vars->color * 30) % 256;
-	g = (g + vars->color * 50) % 256;
-	b = (b + vars->color * 70) % 256;
-	return ((r << 16) | (g << 8) | b);
-}
-
 static double	calc_fractal(t_pixel p, t_vars *vars)
 {
-	int			i;
+	double		i;
 	t_complex	z;
 	t_complex	c;
 	t_complex	tmp;
-	double		smooth_iter;
+	double		r2;
 
-	vars->init_func(p, vars, &z, &c);
-	i = 0;
-	while (i < MAX_ITER && (z.x * z.x + z.y * z.y < THRESHOLD))
+	vars->fractal.init_func(p, vars, &z, &c);
+	r2 = z.x * z.x + z.y * z.y;
+	i = -1;
+	while (++i < MAX_ITER && r2 < THRESHOLD)
 	{
 		tmp = z;
-		vars->update_func(&z, &tmp, &c);
-		i++;
+		vars->fractal.update_func(&z, &tmp, &c);
+		r2 = z.x * z.x + z.y * z.y;
 	}
-	if (i < MAX_ITER)
-	{
-		smooth_iter = i + 1
-			- log(log(z.x * z.x + z.y * z.y) / 2.0 / log(2)) / log(2);
-	}
-	else
-		smooth_iter = i;
-	return (smooth_iter);
+	if (r2 < THRESHOLD)
+		return (i);
+	return (i + 1 - log(log(r2) / LOG2) / LOG2);
 }
 
 void	draw(t_vars *vars)
 {
+	unsigned int	*pixel;
 	t_pixel			p;
-	int				offset;
-	int				bpp;
-	double			i;
 
-	bpp = vars->bpp / 8;
-	p.y = 0;
-	while (p.y < HEIGHT)
+	vars->zoom_cord.x = X_VIEW / (vars->zoom * WIDTH);
+	vars->zoom_cord.y = Y_VIEW / (vars->zoom * HEIGHT);
+	p.y = -1;
+	while (++p.y < HEIGHT)
 	{
-		offset = p.y * vars->sline;
-		p.x = 0;
-		while (p.x < WIDTH)
-		{
-			i = calc_fractal(p, vars);
-			*((unsigned int *)(vars->data + offset + p.x * bpp))
-				= get_color(i, vars);
-			p.x++;
-		}
-		p.y++;
+		pixel = (unsigned int *)(vars->data + p.y * vars->sline);
+		p.x = -1;
+		while (++p.x < WIDTH)
+			pixel[p.x] = get_color(calc_fractal(p, vars), vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	if (vars->info_update)
+		display_info(vars);
 }
