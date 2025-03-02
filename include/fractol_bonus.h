@@ -76,8 +76,7 @@ typedef struct s_vars
 	int			bpp;
 	int			sline;
 	int			end;
-	double		x;
-	double		y;
+	t_complex	center;
 	double		zoom;
 	int			color;
 	t_complex	julia;

@@ -22,8 +22,8 @@
  */
 void	init_julia(t_pixel p, t_vars *vars, t_complex *z, t_complex *c)
 {
-	z->x = vars->zoom_cord.x * (p.x - WIDTH / 2.0) + vars->x;
-	z->y = vars->zoom_cord.y * (p.y - HEIGHT / 2.0) + vars->y;
+	z->x = vars->zoom_cord.x * (p.x - WIDTH / 2.0) + vars->center.x;
+	z->y = vars->zoom_cord.y * (p.y - HEIGHT / 2.0) + vars->center.y;
 	c->x = vars->julia.x;
 	c->y = vars->julia.y;
 }
@@ -39,8 +39,8 @@ void	init_mandelbrot(t_pixel p, t_vars *vars, t_complex *z, t_complex *c)
 {
 	z->x = 0;
 	z->y = 0;
-	c->x = vars->zoom_cord.x * (p.x - WIDTH / 2.0) + vars->x;
-	c->y = vars->zoom_cord.y * (p.y - HEIGHT / 2.0) + vars->y;
+	c->x = vars->zoom_cord.x * (p.x - WIDTH / 2.0) + vars->center.x;
+	c->y = vars->zoom_cord.y * (p.y - HEIGHT / 2.0) + vars->center.y;
 }
 
 /*

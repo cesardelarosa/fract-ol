@@ -35,19 +35,19 @@ int	key_hook(int keycode, t_vars *vars)
 		exit(0);
 	}
 	else if (keycode == LEFT_ARROW_KEY)
-		vars->x -= 0.1 / vars->zoom;
+		vars->center.x -= 0.1 / vars->zoom;
 	else if (keycode == RIGHT_ARROW_KEY)
-		vars->x += 0.1 / vars->zoom;
+		vars->center.x += 0.1 / vars->zoom;
 	else if (keycode == DOWN_ARROW_KEY)
-		vars->y += 0.1 / vars->zoom;
+		vars->center.y += 0.1 / vars->zoom;
 	else if (keycode == UP_ARROW_KEY)
-		vars->y -= 0.1 / vars->zoom;
+		vars->center.y -= 0.1 / vars->zoom;
 	else if (keycode == C_KEY)
 		vars->color = (vars->color + 1) % N_COLORS;
 	else if (keycode == R_KEY)
 	{
-		vars->x = 0;
-		vars->y = 0;
+		vars->center.x = 0;
+		vars->center.y = 0;
 		vars->zoom = 1;
 	}
 	draw(vars);
@@ -59,16 +59,16 @@ static void	toggle_fractal(int x, int y, t_vars *vars)
 	if (vars->fractal.init_func == init_mandelbrot)
 	{
 		vars->julia.x = X_VIEW / (vars->zoom * WIDTH) * (x - WIDTH / 2.0)
-			+ vars->x;
+			+ vars->center.x;
 		vars->julia.y = Y_VIEW / (vars->zoom * HEIGHT) * (y - HEIGHT / 2.0)
-			+ vars->y;
+			+ vars->center.y;
 		vars->fractal.init_func = init_julia;
 	}
 	else if (vars->fractal.init_func == init_julia)
 		vars->fractal.init_func = init_mandelbrot;
 	vars->zoom = 1;
-	vars->x = 0;
-	vars->y = 0;
+	vars->center.x = 0;
+	vars->center.y = 0;
 	vars->info_update = 1;
 }
 
@@ -80,18 +80,18 @@ int	mouse_hook(int button, int x, int y, t_vars *vars)
 	{
 		old_zoom = vars->zoom;
 		vars->zoom *= ZOOM_FACTOR;
-		vars->x += (x - WIDTH / 2) * ((X_VIEW / (old_zoom * WIDTH))
+		vars->center.x += (x - WIDTH / 2) * ((X_VIEW / (old_zoom * WIDTH))
 				- (X_VIEW / (vars->zoom * WIDTH)));
-		vars->y += (y - HEIGHT / 2) * ((Y_VIEW / (old_zoom * HEIGHT))
+		vars->center.y += (y - HEIGHT / 2) * ((Y_VIEW / (old_zoom * HEIGHT))
 				- (Y_VIEW / (vars->zoom * HEIGHT)));
 	}
 	else if (button == MOUSE_DOWN)
 	{
 		old_zoom = vars->zoom;
 		vars->zoom /= ZOOM_FACTOR;
-		vars->x += (x - WIDTH / 2) * ((X_VIEW / (old_zoom * WIDTH))
+		vars->center.x += (x - WIDTH / 2) * ((X_VIEW / (old_zoom * WIDTH))
 				- (X_VIEW / (vars->zoom * WIDTH)));
-		vars->y += (y - HEIGHT / 2) * ((Y_VIEW / (old_zoom * HEIGHT))
+		vars->center.y += (y - HEIGHT / 2) * ((Y_VIEW / (old_zoom * HEIGHT))
 				- (Y_VIEW / (vars->zoom * HEIGHT)));
 	}
 	else if (button == LEFT_CLICK)

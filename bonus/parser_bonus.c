@@ -61,17 +61,12 @@ t_vars	parser(int argc, char **argv)
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT + INFO_HEIGHT, "fractol");
 	vars.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	vars.data = mlx_get_data_addr(vars.img, &vars.bpp, &vars.sline, &vars.end);
-	vars.x = 0;
-	vars.y = 0;
+	vars.center = (t_complex){0, 0};
 	vars.zoom = 1;
 	vars.color = 0;
-	vars.julia.x = -0.7;
-	vars.julia.y = 0.27015;
+	vars.julia = (t_complex){-0.7, 0.27015};
 	vars.info_update = 1;
 	if (argc == 4)
-	{
-		vars.julia.x = ft_atof(argv[2]);
-		vars.julia.y = ft_atof(argv[3]);
-	}
+		vars.julia = (t_complex){ft_atof(argv[2]), ft_atof(argv[3])};
 	return (vars);
 }
