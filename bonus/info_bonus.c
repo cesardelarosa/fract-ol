@@ -46,7 +46,7 @@ static char	*build_fractal_line_nonbonus(t_vars *vars)
 	return (ft_strdup("unknown"));
 }
 
-static char	*build_complex_str(t_complex comp)
+static char	*build_c_str(t_complex comp)
 {
 	char	*real_str;
 	char	*imag_str;
@@ -58,7 +58,7 @@ static char	*build_complex_str(t_complex comp)
 	if (imag_str[0] == '-')
 	{
 		tmp = ft_strjoin(real_str, " - ");
-		result = ft_strjoin(tmp, ft_strdup(imag_str + 1));
+		result = ft_strjoin(tmp, imag_str + 1);
 		free(tmp);
 	}
 	else
@@ -77,6 +77,7 @@ static char	*build_complex_str(t_complex comp)
 void	display_info(t_vars *vars)
 {
 	char	*line;
+	char	*c_str;
 
 	fill_info_panel(vars);
 	if (vars->fractal.is_bonus == 1)
@@ -87,8 +88,9 @@ void	display_info(t_vars *vars)
 	free(line);
 	if (vars->fractal.init_func == init_julia)
 	{
-		mlx_string_put(vars->mlx, vars->win, 10, HEIGHT + 40, 0xFFFFFF,
-			build_complex_str(vars->julia));
+		c_str = build_c_str(vars->julia);
+		mlx_string_put(vars->mlx, vars->win, 10, HEIGHT + 40, 0xFFFFFF, c_str);
+		free(c_str);
 	}
 	vars->info_update = 0;
 }
