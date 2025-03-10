@@ -14,17 +14,18 @@ Para clonar el proyecto (recuerda clonar de forma recursiva para obtener las sub
 ```bash
     git clone --recursive https://github.com/cesardelarosa/fract-ol.git && cd fract-ol
 ```
+
 ### Compilación
 
 El proyecto se compila mediante `Makefile`.
 
 - Para compilar la versión **obligatoria**:
 ```bash
-        make
+    make
 ```
 - Para compilar la versión **bonus** (con fractales adicionales y opciones de color):
 ```bash
-        make bonus
+    make bonus
 ```
 > **Nota:** La compilación utiliza subdirectorios como `libft` y `minilibx`;  
 > asegúrate de tenerlos correctamente clonados.
@@ -49,7 +50,6 @@ Por ejemplo, para ejecutar el fractal *buffalo*:
 
 Una vez iniciado el programa (por ejemplo, con `./fractol buffalo`), se muestran en la terminal los controles disponibles:
 
-
 - **ESC KEY:** Finaliza la ejecución del programa.  
 - **C KEY:** Cambia la paleta de colores.  
 - **R KEY:** Resetea la posición y el zoom.  
@@ -63,46 +63,44 @@ Una vez iniciado el programa (por ejemplo, con `./fractol buffalo`), se muestran
 
 ### Opciones de Colores
 
-Puedes observar las distintas paletas de colores disponibles (los archivos de imagen se encuentran en el directorio `images/`):
+Aquí se muestran distintas paletas de colores disponibles:
 
-- [Color 1](images/color1.png)  
-- [Color 2](images/color2.png)  
-- [Color 3](images/color3.png)  
-- [Color 4](images/color4.png)  
+![Color 1](images/color1.png)  
+![Color 2](images/color2.png)  
+![Color 3](images/color3.png)  
+![Color 4](images/color4.png)
 
 ### Opciones de Fractales
 
 A continuación, se muestran ejemplos de fractales en sus distintas versiones (Mandelbrot y Julia, cuando aplica):
 
 - **Mandelbrot:**
-  - [Mandelbrot - Vista Completa](images/mandelbrot_full.png)
-  - [Mandelbrot - Detalle](images/mandelbrot_detail.png)
+  - ![Mandelbrot - Vista Completa](images/mandelbrot_full.png)  
+  - ![Mandelbrot - Detalle](images/mandelbrot_detail.png)
   
 - **Julia:**
-  - [Julia - Ejemplo 1](images/julia_sample1.png)
-  - [Julia - Ejemplo 2](images/julia_sample2.png)
+  - ![Julia - Ejemplo 1](images/julia_sample1.png)  
+  - ![Julia - Ejemplo 2](images/julia_sample2.png)
 
 - **Burning Ship:**
-  - [Burning Ship - Mandelbrot](images/burning_ship_mandelbrot.png)
-  - [Burning Ship - Julia](images/burning_ship_julia.png)
+  - ![Burning Ship - Mandelbrot](images/burning_ship_mandelbrot.png)  
+  - ![Burning Ship - Julia](images/burning_ship_julia.png)
 
 - **Multibrot:**
-  - [Multibrot - Mandelbrot](images/multibrot_mandelbrot.png)
-  - [Multibrot - Julia](images/multibrot_julia.png)
+  - ![Multibrot - Mandelbrot](images/multibrot_mandelbrot.png)  
+  - ![Multibrot - Julia](images/multibrot_julia.png)
 
 - **Tricorn:**
-  - [Tricorn - Mandelbrot](images/tricorn_mandelbrot.png)
-  - [Tricorn - Julia](images/tricorn_julia.png)
+  - ![Tricorn - Mandelbrot](images/tricorn_mandelbrot.png)  
+  - ![Tricorn - Julia](images/tricorn_julia.png)
 
 - **Celtic:**
-  - [Celtic - Mandelbrot](images/celtic_mandelbrot.png)
-  - [Celtic - Julia](images/celtic_julia.png)
+  - ![Celtic - Mandelbrot](images/celtic_mandelbrot.png)  
+  - ![Celtic - Julia](images/celtic_julia.png)
 
 - **Buffalo:**
-  - [Buffalo - Mandelbrot](images/buffalo_mandelbrot.png)
-  - [Buffalo - Julia](images/buffalo_julia.png)
-
-Haz clic en cada enlace para ver la imagen en tamaño completo.
+  - ![Buffalo - Mandelbrot](images/buffalo_mandelbrot.png)  
+  - ![Buffalo - Julia](images/buffalo_julia.png)
 
 ---
 
@@ -112,45 +110,45 @@ Los fractales son objetos que presentan auto-similitud y complejidad infinita. M
 
 ### Conjunto de Mandelbrot
 
-El **conjunto de Mandelbrot** se define como el conjunto de puntos \( c \in \mathbb{C} \) para los cuales la sucesión
+El **conjunto de Mandelbrot** se define como el conjunto de puntos $c \in \mathbb{C}$ para los cuales la sucesión
 
-\[
-z_{n+1} = z_n^2 + c \quad \text{con } z_0 = 0
-\]
+$$
+z_{n+1} = z_n^2 + c \quad\text{con}\; z_0 = 0
+$$
 
 se mantiene acotada, es decir:
 
-\[
+$$
 \limsup_{n \to \infty} |z_n| < \infty.
-\]
+$$
 
 La complejidad de su borde es famosa por generar estructuras infinitamente ricas en detalle.
 
 ### Conjunto de Julia
 
-Para un parámetro \( c \) fijo, el **conjunto de Julia** se define como:
+Para un parámetro fijo $c$, el **conjunto de Julia** se define como:
 
-\[
-J(c) = \{ z_0 \in \mathbb{C} \mid \{z_{n+1} = z_n^2 + c\} \text{ no diverge} \}.
-\]
+$$
+J(c) = \{ z_0 \in \mathbb{C} \mid \{z_{n+1} = z_n^2 + c\}\text{ no diverge} \}.
+$$
 
 Una propiedad fundamental es que:
 
-- Si \( c \) pertenece al conjunto de Mandelbrot, entonces \( J(c) \) es conexo.  
-- Si \( c \) no pertenece al conjunto de Mandelbrot, \( J(c) \) es desconexo (a menudo llamado "polvo de Julia").
+- Si $c$ pertenece al conjunto de Mandelbrot, entonces $J(c)$ es conexo.  
+- Si $c$ no pertenece al conjunto de Mandelbrot, $J(c)$ es desconexo (a menudo llamado "polvo de Julia").
 
 ### Algoritmo de Cálculo
 
 La renderización de fractales se basa en el **algoritmo de tiempo de escape**:
 
 1. **Mapeo de píxeles al plano complejo:**  
-   Cada píxel \((x,y)\) se transforma en un número complejo \( z_0 \) o se utiliza como \( c \), según el fractal.
+   Cada píxel $(x,y)$ se transforma en un número complejo $z_0$ o se utiliza como $c$, según el fractal.
 
 2. **Iteración:**  
-   Se aplica recursivamente la función \( f(z) = z^2 + c \) (o sus variantes para otros fractales).
+   Se aplica recursivamente la función $f(z) = z^2 + c$ (o sus variantes para otros fractales).
 
 3. **Condición de escape:**  
-   Se cuenta el número de iteraciones \( n \) hasta que \( |z_n| \) supera un umbral (por ejemplo, 2). Si \( n \) alcanza el valor máximo definido, se asume que el punto pertenece al fractal.
+   Se cuenta el número de iteraciones $n$ hasta que $|z_n|$ supera un umbral (por ejemplo, 2). Si $n$ alcanza el valor máximo definido, se asume que el punto pertenece al fractal.
 
 4. **Suavizado de colores:**  
    Se utiliza una función de suavizado para asignar un valor continuo de iteración y obtener gradientes de color más suaves.
