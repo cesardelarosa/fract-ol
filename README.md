@@ -63,7 +63,7 @@ Once the program has started (for example, with `./fractol buffalo`), the follow
 
 ### Color Palettes
 
-Below you can see the different available color palettes, arranged in two columns:
+Below you can see the different available color palettes:
 
 <div align="center">
   <a href="images/color1.png">
