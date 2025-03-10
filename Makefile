@@ -28,17 +28,17 @@ NC = \033[0m
 all: mandatory
 
 mandatory:
-	@if [ -f $(MODE_FILE) ] && [ "$$(cat $(MODE_FILE))" = "mandatory" ]; then \
-	    printf "[fractol] The mandatory version is already compiled.\n”"; \
-	else \
+	@if [ ! -f $(NAME) ] || [ ! -f $(MODE_FILE) ] || [ "$$(cat $(MODE_FILE))" != "mandatory" ] || [ "$$(find $(SRC_DIR) -name '*.c' -newer $(NAME))" != "" ]; then \
 	    $(MAKE) re_mandatory; \
+	else \
+	    printf "[fractol] The mandatory version is already compiled.\n"; \
 	fi
 
 bonus:
-	@if [ -f $(MODE_FILE) ] && [ "$$(cat $(MODE_FILE))" = "bonus" ]; then \
-	    printf "[fractol] The bonus version is already compiled.\n"; \
-	else \
+	@if [ ! -f $(NAME) ] || [ ! -f $(MODE_FILE) ] || [ "$$(cat $(MODE_FILE))" != "bonus" ] || [ "$$(find $(BONUS_DIR) -name '*.c' -newer $(NAME))" != "" ]; then \
 	    $(MAKE) re_bonus; \
+	else \
+	    printf "[fractol] The bonus version is already compiled.\n"; \
 	fi
 
 re_mandatory: $(OBJ_DIR) $(MANDATORY_OBJ) $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a
