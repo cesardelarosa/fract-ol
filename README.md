@@ -1,5 +1,7 @@
 # Fract-ol
 
+[🌎 Read this in Spanish](README.es.md)
+
 An interactive tool written in C that lets you explore and visualize a wide variety of fractals.  
 It supports both the **mandatory** mode (julia, mandelbrot) and a **bonus** mode with additional fractals:  
 **burning_ship, multibrot, tricorn, celtic, buffalo**.
