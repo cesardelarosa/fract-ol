@@ -1,226 +1,288 @@
 # Fract-ol
 
-Una herramienta interactiva escrita en C, que permite explorar y visualizar una gran variedad de fractales.  
-Soporta tanto el modo **obligatorio** (julia, mandelbrot) como un modo **bonus** con fractales adicionales:  
+An interactive tool written in C that lets you explore and visualize a wide variety of fractals.  
+It supports both the **mandatory** mode (julia, mandelbrot) and a **bonus** mode with additional fractals:  
 **burning_ship, multibrot, tricorn, celtic, buffalo**.
 
 ---
 
-## 1. Clonar, Compilar y Ejecución
+## 1. Clone, Compile, and Run
 
-### Clonar el Repositorio
+### Clone the Repository
 
-Para clonar el proyecto (recuerda clonar de forma recursiva para obtener las sublibrerías):
+To clone the project (remember to clone it recursively to get the submodules):
 ```bash
-    git clone --recursive https://github.com/cesardelarosa/fract-ol.git && cd fract-ol
+git clone --recursive https://github.com/cesardelarosa/fract-ol.git && cd fract-ol
 ```
 
-### Compilación
+### Compilation
 
-El proyecto se compila mediante `Makefile`.
+The project is compiled with a `Makefile`.
 
-- Para compilar la versión **obligatoria**:
+- To compile the **mandatory** version:
 ```bash
-    make
+make
 ```
-- Para compilar la versión **bonus** (con fractales adicionales y opciones de color):
+- To compile the **bonus** version (with additional fractals and color options):
 ```bash
-    make bonus
+make bonus
 ```
-> **Nota:** La compilación utiliza subdirectorios como `libft` y `minilibx`;  
-> asegúrate de tenerlos correctamente clonados.
+> **Note:** The compilation uses subdirectories like `libft` and `minilibx`;  
+> make sure you have them correctly cloned.
 
-### Ejecución
+### Execution
 
-La sintaxis de ejecución es la siguiente:
+The execution syntax is as follows:
 ```bash
-    ./fractol <fractal_type> [<julia_cx> <julia_cy>]
+./fractol <fractal_type> [<julia_cx> <julia_cy>]
 ```
-Donde `<fractal_type>` puede ser cualquiera de:
-- **obligatorio:** `julia`, `mandelbrot`
+Where `<fractal_type>` can be any of:
+- **mandatory:** `julia`, `mandelbrot`
 - **bonus:** `burning_ship`, `multibrot`, `tricorn`, `celtic`, `buffalo`
 
-Por ejemplo, para ejecutar el fractal *buffalo*:
+For instance, to run the *buffalo* fractal:
 ```bash
-    ./fractol buffalo
+./fractol buffalo
 ```
 ---
 
-## 2. Manejo e Interacción
+## 2. Controls and Interaction
 
-Una vez iniciado el programa (por ejemplo, con `./fractol buffalo`), se muestran en la terminal los controles disponibles:
+Once the program has started (for example, with `./fractol buffalo`), the following controls are displayed in the terminal:
 
-- **ESC KEY:** Finaliza la ejecución del programa.  
-- **C KEY:** Cambia la paleta de colores.  
-- **R KEY:** Resetea la posición y el zoom.  
-- **Flechas (ARROWS):** Mueven la vista del fractal.  
-- **MOUSE WHEEL:** Realiza zoom in/zoom out.  
-- **LEFT CLICK:** Alterna entre la versión Mandelbrot y la versión Julia (si procede).
+- **ESC KEY:** Ends the program execution.  
+- **C KEY:** Changes the color palette.  
+- **R KEY:** Resets position and zoom.  
+- **Arrow keys:** Move the fractal view.  
+- **Mouse wheel:** Zoom in or out.  
+- **Left click:** Toggles between the Mandelbrot and Julia versions (when applicable).
 
 ---
 
-## 3. Galería de Imágenes
+## 3. Image Gallery
 
-### Opciones de Colores
+### Color Palettes
 
-Aquí se muestran distintas paletas de colores disponibles:
+Below you can see the different available color palettes, arranged in two columns:
 
-![Color 1](images/color1.png)  
-![Color 2](images/color2.png)  
-![Color 3](images/color3.png)  
-![Color 4](images/color4.png)
+<div align="center">
+  <a href="images/color1.png">
+    <img src="images/color1.png" width="412px"/>
+  </a>
+  <a href="images/color2.png">
+    <img src="images/color2.png" width="412px"/>
+  </a>
+</div>
 
-### Opciones de Fractales
+<div align="center">
+  <a href="images/color3.png">
+    <img src="images/color3.png" width="412px"/>
+  </a>
+  <a href="images/color4.png">
+    <img src="images/color4.png" width="412px"/>
+  </a>
+</div>
 
-A continuación, se muestran ejemplos de fractales en sus distintas versiones (Mandelbrot y Julia, cuando aplica):
+### Fractal Examples
+
+Below are examples of fractals in their different versions (Mandelbrot and Julia, when applicable), displayed in pairs:
 
 - **Mandelbrot:**
-  - ![Mandelbrot - Vista Completa](images/mandelbrot_full.png)  
-  - ![Mandelbrot - Detalle](images/mandelbrot_detail.png)
-  
+
+<div align="center">
+  <a href="images/mandelbrot_full.png">
+    <img src="images/mandelbrot_full.png" width="412px"/>
+  </a>
+  <a href="images/mandelbrot_detail.png">
+    <img src="images/mandelbrot_detail.png" width="412px"/>
+  </a>
+</div>
+
 - **Julia:**
-  - ![Julia - Ejemplo 1](images/julia_sample1.png)  
-  - ![Julia - Ejemplo 2](images/julia_sample2.png)
+
+<div align="center">
+  <a href="images/julia_sample1.png">
+    <img src="images/julia_sample1.png" width="412px"/>
+  </a>
+  <a href="images/julia_sample2.png">
+    <img src="images/julia_sample2.png" width="412px"/>
+  </a>
+</div>
 
 - **Burning Ship:**
-  - ![Burning Ship - Mandelbrot](images/burning_ship_mandelbrot.png)  
-  - ![Burning Ship - Julia](images/burning_ship_julia.png)
+
+<div align="center">
+  <a href="images/burning_ship_mandelbrot.png">
+    <img src="images/burning_ship_mandelbrot.png" width="412px"/>
+  </a>
+  <a href="images/burning_ship_julia.png">
+    <img src="images/burning_ship_julia.png" width="412px"/>
+  </a>
+</div>
 
 - **Multibrot:**
-  - ![Multibrot - Mandelbrot](images/multibrot_mandelbrot.png)  
-  - ![Multibrot - Julia](images/multibrot_julia.png)
+
+<div align="center">
+  <a href="images/multibrot_mandelbrot.png">
+    <img src="images/multibrot_mandelbrot.png" width="412px"/>
+  </a>
+  <a href="images/multibrot_julia.png">
+    <img src="images/multibrot_julia.png" width="412px"/>
+  </a>
+</div>
 
 - **Tricorn:**
-  - ![Tricorn - Mandelbrot](images/tricorn_mandelbrot.png)  
-  - ![Tricorn - Julia](images/tricorn_julia.png)
+
+<div align="center">
+  <a href="images/tricorn_mandelbrot.png">
+    <img src="images/tricorn_mandelbrot.png" width="412px"/>
+  </a>
+  <a href="images/tricorn_julia.png">
+    <img src="images/tricorn_julia.png" width="412px"/>
+  </a>
+</div>
 
 - **Celtic:**
-  - ![Celtic - Mandelbrot](images/celtic_mandelbrot.png)  
-  - ![Celtic - Julia](images/celtic_julia.png)
+
+<div align="center">
+  <a href="images/celtic_mandelbrot.png">
+    <img src="images/celtic_mandelbrot.png" width="412px"/>
+  </a>
+  <a href="images/celtic_julia.png">
+    <img src="images/celtic_julia.png" width="412px"/>
+  </a>
+</div>
 
 - **Buffalo:**
-  - ![Buffalo - Mandelbrot](images/buffalo_mandelbrot.png)  
-  - ![Buffalo - Julia](images/buffalo_julia.png)
+
+<div align="center">
+  <a href="images/buffalo_mandelbrot.png">
+    <img src="images/buffalo_mandelbrot.png" width="412px"/>
+  </a>
+  <a href="images/buffalo_julia.png">
+    <img src="images/buffalo_julia.png" width="412px"/>
+  </a>
+</div>
 
 ---
 
-## 4. Matemáticas y Teoría de los Fractales
+## 4. Math and Fractal Theory
 
-Los fractales son objetos que presentan auto-similitud y complejidad infinita. Matemáticamente, se pueden definir mediante iteraciones de funciones complejas.
+Fractals are objects that exhibit self-similarity and infinite complexity. Mathematically, they can be defined by iterating complex functions.
 
-### Conjunto de Mandelbrot
+### Mandelbrot Set
 
-El **conjunto de Mandelbrot** se define como el conjunto de puntos $c \in \mathbb{C}$ para los cuales la sucesión
+The **Mandelbrot set** is defined as the set of points $c \in \mathbb{C}$ for which the sequence
 
 $$
-z_{n+1} = z_n^2 + c \quad\text{con}\; z_0 = 0
+z_{n+1} = z_n^2 + c \quad\text{with}\; z_0 = 0
 $$
 
-se mantiene acotada, es decir:
+remains bounded, i.e.:
 
 $$
 \limsup_{n \to \infty} |z_n| < \infty.
 $$
 
-La complejidad de su borde es famosa por generar estructuras infinitamente ricas en detalle.
+Its boundary is famous for its infinitely rich structure.
 
-### Conjunto de Julia
+### Julia Set
 
-Para un parámetro fijo $c$, el **conjunto de Julia** se define como:
+For a fixed parameter $c$, the **Julia set** is defined as:
 
 $$
-J(c) = \{ z_0 \in \mathbb{C} \mid \{z_{n+1} = z_n^2 + c\}\text{ no diverge} \}.
+J(c) = \{ z_0 \in \mathbb{C} \mid \{z_{n+1} = z_n^2 + c\}\text{ does not diverge} \}.
 $$
 
-Una propiedad fundamental es que:
+A key property is:
 
-- Si $c$ pertenece al conjunto de Mandelbrot, entonces $J(c)$ es conexo.  
-- Si $c$ no pertenece al conjunto de Mandelbrot, $J(c)$ es desconexo (a menudo llamado "polvo de Julia").
+- If $c$ belongs to the Mandelbrot set, then $J(c)$ is connected.  
+- If $c$ does not belong to the Mandelbrot set, $J(c)$ is disconnected (often called "Julia dust").
 
-### Algoritmo de Cálculo
+### Calculation Algorithm
 
-La renderización de fractales se basa en el **algoritmo de tiempo de escape**:
+Fractal rendering is based on the **escape time algorithm**:
 
-1. **Mapeo de píxeles al plano complejo:**  
-   Cada píxel $(x,y)$ se transforma en un número complejo $z_0$ o se utiliza como $c$, según el fractal.
+1. **Pixel mapping to the complex plane:**  
+   Each pixel $(x,y)$ is transformed into a complex number $z_0$ or used as $c$, depending on the fractal.
 
-2. **Iteración:**  
-   Se aplica recursivamente la función $f(z) = z^2 + c$ (o sus variantes para otros fractales).
+2. **Iteration:**  
+   Recursively apply $f(z) = z^2 + c$ (or its variants for other fractals).
 
-3. **Condición de escape:**  
-   Se cuenta el número de iteraciones $n$ hasta que $|z_n|$ supera un umbral (por ejemplo, 2). Si $n$ alcanza el valor máximo definido, se asume que el punto pertenece al fractal.
+3. **Escape condition:**  
+   Count the number of iterations $n$ until $|z_n|$ exceeds a threshold (e.g., 2). If $n$ reaches the maximum defined value, the point is assumed to be within the fractal.
 
-4. **Suavizado de colores:**  
-   Se utiliza una función de suavizado para asignar un valor continuo de iteración y obtener gradientes de color más suaves.
+4. **Color smoothing:**  
+   A smoothing function is used to assign a continuous iteration value and achieve smoother color gradients.
 
-Otros fractales (como *burning_ship*, *multibrot*, *tricorn*, *celtic* y *buffalo*) modifican la función iterativa y/o el mapeo al plano complejo, lo que resulta en patrones y simetrías propias de cada uno.
+Other fractals (such as *burning_ship*, *multibrot*, *tricorn*, *celtic*, and *buffalo*) modify the iterative function and/or the mapping to the complex plane, resulting in unique patterns and symmetries.
 
-Esta implementación es ideal para estudiantes y entusiastas del cálculo complejo, ya que une conceptos de análisis, geometría y teoría del caos en una herramienta interactiva y visualmente atractiva.
+This implementation is ideal for students and enthusiasts of complex analysis, as it brings together concepts from analysis, geometry, and chaos theory in an interactive, visually striking tool.
 
 ---
 
-## 5. Estructura del Proyecto
+## 5. Project Structure
 
-El proyecto se organiza de la siguiente manera:
+The project is organized as follows:
 
 - **src/**
   - `main.c`  
-    Punto de entrada para la versión obligatoria. Inicializa la aplicación y gestiona el bucle de eventos.
+    Entry point for the mandatory version. Initializes the application and handles the event loop.
   - `hooks.c`  
-    Maneja eventos de teclado y ratón para la versión obligatoria.
+    Handles keyboard and mouse events for the mandatory version.
   - `parser.c`  
-    Procesa los argumentos de la línea de comandos y selecciona el tipo de fractal.
+    Processes command-line arguments and selects the fractal type.
   - `draw.c`  
-    Renderiza el fractal en la ventana, aplicando iteraciones y asignando colores.
+    Renders the fractal in the window, performing iterations and assigning colors.
   - `math.c`  
-    Implementa los cálculos matemáticos para los fractales *julia* y *mandelbrot*.
+    Implements the math calculations for the *julia* and *mandelbrot* fractals.
 
 - **bonus/**
   - `main_bonus.c`  
-    Punto de entrada para la versión bonus, con fractales adicionales y opciones extendidas.
+    Entry point for the bonus version, featuring additional fractals and extended options.
   - `hooks_bonus.c`  
-    Maneja la interacción en la versión bonus.
+    Handles interaction in the bonus version.
   - `parser_bonus.c`  
-    Procesa los argumentos para el modo bonus.
+    Processes arguments for the bonus mode.
   - `draw_bonus.c`  
-    Renderiza los fractales en la versión bonus.
+    Renders fractals in the bonus version.
   - `math_bonus.c`, `math2_bonus.c`  
-    Contienen funciones específicas para el cálculo de fractales como *burning_ship*, *multibrot*, *tricorn*, *celtic* y *buffalo*.
+    Contain specific functions for calculating fractals like *burning_ship*, *multibrot*, *tricorn*, *celtic*, and *buffalo*.
   - `info_bonus.c`  
-    Muestra información en pantalla (tipo panel informativo).
+    Displays on-screen information (like an info panel).
   - `color_bonus.c`  
-    Define los esquemas de color para la versión bonus.
+    Defines the color schemes for the bonus version.
 
 - **include/**  
-  Archivos de cabecera (`.h`) con las definiciones y prototipos usados en el proyecto.
+  Header files (`.h`) containing definitions and prototypes used in the project.
 
 - **libft/**  
-  Biblioteca con funciones auxiliares desarrolladas según las normas de 42.
+  A library of helper functions developed following 42 standards.
 
 - **minilibx/**  
-  Librería gráfica utilizada para la creación de ventanas y manejo de gráficos.
+  The graphical library used for window creation and graphics handling.
 
 - **images/**  
-  Directorio que contiene las capturas y ejemplos visuales de los distintos fractales y paletas de colores.
+  A directory containing snapshots and visual examples of different fractals and color palettes.
 
 - **Makefile**  
-  Define las reglas de compilación, permitiendo compilar tanto la versión **mandatory** como la **bonus**.
+  Defines the compilation rules for both the **mandatory** and **bonus** versions.
 
 ---
 
-¡Explora, experimenta y déjate sorprender por la belleza infinita de los fractales!  
-Si encuentras algún problema, tienes sugerencias o deseas colaborar, no dudes en abrir un *issue* o enviar un *pull request* en el repositorio:
+Explore, experiment, and be amazed by the infinite beauty of fractals!  
+If you find any problems, have suggestions, or want to collaborate, feel free to open an *issue* or submit a *pull request* in the repository:
 
 [github.com/cesardelarosa/fract-ol](https://github.com/cesardelarosa/fract-ol)
 
 ---
 
-## Créditos
+## Credits
 
-- **Autor:** César de la Rosa (cde-la-r)  
-- **Correo:** code@cesardelarosa.xyz  
-- **Proyecto:** Fract-ol (Proyecto para el curso de programación en 42)
+- **Author:** César de la Rosa (cde-la-r)  
+- **Email:** code@cesardelarosa.xyz  
+- **Project:** Fract-ol (Project for the 42 programming curriculum)
 
 ---
 
-*¡Que disfrutes explorando estos infinitos universos visuales y matemáticos!*
+*Enjoy exploring these infinite visual and mathematical universes!*
