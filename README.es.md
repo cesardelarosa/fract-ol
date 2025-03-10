@@ -1,5 +1,7 @@
 # Fract-ol
 
+[🌎 Leer en inglés](README.md)
+
 Una herramienta interactiva escrita en C que te permite explorar y visualizar una gran variedad de fractales.  
 Admite tanto el modo **obligatorio** (julia, mandelbrot) como un modo **bonus** con fractales adicionales:  
 **burning_ship, multibrot, tricorn, celtic, buffalo**.
@@ -64,7 +66,7 @@ Una vez iniciado el programa (por ejemplo, con `./fractol buffalo`), se mostrar�
 
 ### Paletas de Color
 
-A continuación se muestran las distintas paletas de color disponibles, dispuestas en dos columnas:
+A continuación se muestran las distintas paletas de color disponibles:
 
 <div align="center">
   <a href="images/color1.png">
@@ -86,7 +88,7 @@ A continuación se muestran las distintas paletas de color disponibles, dispuest
 
 ### Ejemplos de Fractales
 
-A continuación se muestran ejemplos de fractales en sus distintas versiones (Mandelbrot y Julia, cuando proceda), dispuestos de dos en dos:
+A continuación se muestran ejemplos de fractales en sus distintas versiones (Mandelbrot y Julia, cuando proceda):
 
 - **Mandelbrot:**
 
