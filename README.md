@@ -10,6 +10,31 @@ It supports both the **mandatory** mode (julia, mandelbrot) and a **bonus** mode
 
 ## 1. Clone, Compile, and Run
 
+### Dependencies
+
+This project uses the MiniLibX graphic library, which requires the X Window System, Xext, and BSD libraries to compile and run correctly. Depending on your Linux distribution, install the following packages before running `make`:
+
+**Debian / Ubuntu**
+
+```bash
+sudo apt update && sudo apt install xorg libxext-dev zlib1g-dev libbsd-dev
+
+```
+
+**Fedora**
+
+```bash
+sudo dnf install libX11-devel libXext-devel libbsd-devel zlib-devel
+
+```
+
+**Arch Linux**
+
+```bash
+sudo pacman -S libx11 libxext libbsd zlib
+
+```
+
 ### Clone the Repository
 
 To clone the project (remember to clone it recursively to get the submodules):
