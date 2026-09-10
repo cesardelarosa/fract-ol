@@ -57,7 +57,7 @@ $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR) complete
 
 $(MINILIBX_DIR)/libmlx.a:
-	$(MAKE) -C $(MINILIBX_DIR)
+	$(MAKE) -C $(MINILIBX_DIR) CC="cc -std=gnu99"
 
 $(OBJ_DIR):
 	@printf "$(BLUE)[fractol] Creating objects directory...$(NC)\n"
@@ -75,7 +75,7 @@ clean:
 	@printf "$(RED)[fractol] Cleaning object files...$(NC)\n"
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MINILIBX_DIR) clean
+	-$(MAKE) -C $(MINILIBX_DIR) clean
 
 fclean: clean
 	@printf "$(RED)[fractol] Removing executable and mode file...$(NC)\n"
